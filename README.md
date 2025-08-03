@@ -1,57 +1,32 @@
 # Evans Kipngeno Cheruiyot - Portfolio Website
 
-Welcome to my personal portfolio website, where I showcase my projects, skills, and journey as a backend developer and software engineering student.
+This is the source code for my personal portfolio website built with **HTML** and **CSS** only — no JavaScript.  
+The goal is to showcase my skills, projects, education background, and provide access to my CV.
 
-🌐 **Live Website**: [Visit Portfolio](https://evanskip.netlify.app/)  
-📂 **GitHub Repo**: [View on GitHub](https://github.com/Ab494)
-
----
-
-## 📄 About Me
-
-Hi, I'm Evans Kipngeno Cheruiyot, a passionate software engineer and backend developer.  
-Currently pursuing a **Diploma in Information Communication Technology** at **Eldoret National Polytechnic**.  
-I'm skilled in Python, Django, REST APIs, and backend systems — and currently learning frontend technologies.
+🔗 **Live Site**: [https://evanskip.netlify.app](https://evanskip.netlify.app)  
+📄 **CV**: [Download CV](./files/evans_cv.pdf)
 
 ---
 
-## 💼 Projects
+## 📌 Features
 
-### 🏫 Student Management System
-- A full-stack project built with Django.
-- Features: student attendance, grade submissions, PDF report cards, and more.
-- 🔗 [Live Demo](https://school-dashboard-lqng.onrender.com)
-
-### ⚙️ Student API
-- A RESTful API for managing student records using Django REST Framework.
-- CRUD functionality with role-based access.
-- 🔗 [View GitHub Repository](https://github.com/Ab494)
+- Clean, responsive design using HTML and CSS
+- Profile picture and brief introduction
+- Dedicated **About Me** section
+- Highlighted **Projects**
+- Downloadable CV section
+- Stylish footer with social links
+- CSS animations for smooth user experience
 
 ---
 
-## 📥 Download My CV
+## 🛠️ Built With
 
-You can [download my CV as PDF](files/evans_cv.pdf) directly from this repository or view it on the live site.
-
----
-
-## 🛠️ Tech Stack
-
-- **Languages**: Python, HTML, CSS, JavaScript
-- **Backend**: Django, Django REST Framework
-- **Tools**: Git, GitHub, Render, Netlify, Docker
-- **Currently Learning**: Frontend (HTML/CSS/JS), React
+- **HTML5** – semantic structure
+- **CSS3** – modern layout and animations
+- **Netlify** – for deployment
 
 ---
 
-## 📫 Contact
+## 📁 Folder Structure
 
-- Email: cheruyotevans646@gmail.com
-- LinkedIn: [LinkedIn Profile](https://linkedin.com/in/your-profile)
-- GitHub: [Ab494](https://github.com/Ab494)
-
----
-
-## 📌 License
-
-This project is licensed under the [MIT License](LICENSE).
