@@ -30,3 +30,37 @@ The goal is to showcase my skills, projects, education background, and provide a
 
 ## 📁 Folder Structure
 
+
+
+.
+├── files/
+│ └── evans_cv.pdf
+├── images/
+│ └── profile.jpg
+├── index.html
+├── style.css
+└── README.md
+
+
+---
+
+## 🚀 Deployment
+
+Hosted on **Netlify** for free and continuous deployment.  
+Any changes pushed to the GitHub repo automatically update the live site.
+
+---
+
+## 📬 Contact
+
+Feel free to connect with me:
+
+- Email: cheruyotevans646@gmail.com
+- GitHub: [Ab494](https://github.com/Ab494)
+
+---
+
+## 📜 License
+
+This project is open source under the [MIT License](LICENSE).
+
