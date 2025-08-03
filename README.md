@@ -32,7 +32,6 @@ The portfolio showcases my software development projects, education background, 
 
 ## 🧭 Project Structure
 
-\```
 .
 ├── files/
 │   └── evans_cv.pdf
@@ -41,9 +40,7 @@ The portfolio showcases my software development projects, education background, 
 ├── index.html
 ├── style.css
 └── README.md
-\```
 
-> (Note: Remove the backslashes `\` above if copying manually into GitHub to properly render the code block.)
 
 ---
 
