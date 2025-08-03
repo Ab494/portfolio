@@ -1,66 +1,72 @@
 # Evans Kipngeno Cheruiyot - Portfolio Website
 
-This is the source code for my personal portfolio website built with **HTML** and **CSS** only — no JavaScript.  
-The goal is to showcase my skills, projects, education background, and provide access to my CV.
+This is the source code for my personal portfolio website built with **HTML** and **CSS only** — no JavaScript involved.
 
-🔗 **Live Site**: [https://evanskip.netlify.app](https://evanskip.netlify.app)  
-📄 **CV**: [Download CV](./files/evans_cv.pdf)
+The portfolio showcases my software development projects, education background, and includes a downloadable CV. It was built for presentation during a hackathon event and hosted on Netlify.
 
----
-
-## 📌 Features
-
-- Clean, responsive design using HTML and CSS
-- Profile picture and brief introduction
-- Dedicated **About Me** section
-- Highlighted **Projects**
-- Downloadable CV section
-- Stylish footer with social links
-- CSS animations for smooth user experience
+🌐 **Live Website**: [https://evanskip.netlify.app](https://evanskip.netlify.app)  
+📄 **CV**: [Download My CV (PDF)](./files/evans_cv.pdf)
 
 ---
 
-## 🛠️ Built With
+## ✨ Features
 
-- **HTML5** – semantic structure
-- **CSS3** – modern layout and animations
-- **Netlify** – for deployment
+- Profile image and introduction  
+- About Me section  
+- Dedicated “Download My CV” section  
+- Projects showcase (Student Management System & Student API)  
+- Spotlight on mentor  
+- Fully responsive layout  
+- Custom CSS styling and animations  
+- No JavaScript used  
 
 ---
 
-## 📁 Folder Structure
+## 🖥️ Technologies Used
 
+- **HTML5** – Semantic markup  
+- **CSS3** – Layouts, styling, animations  
+- **Netlify** – Hosting and deployment  
 
+---
 
+## 🧭 Project Structure
+
+\```
 .
 ├── files/
-│ └── evans_cv.pdf
+│   └── evans_cv.pdf
 ├── images/
-│ └── profile.jpg
+│   └── profile.jpg
 ├── index.html
 ├── style.css
 └── README.md
+\```
 
+> (Note: Remove the backslashes `\` above if copying manually into GitHub to properly render the code block.)
 
 ---
 
 ## 🚀 Deployment
 
-Hosted on **Netlify** for free and continuous deployment.  
-Any changes pushed to the GitHub repo automatically update the live site.
+The site is hosted and automatically deployed via [Netlify](https://www.netlify.com/).  
+Every time I push to the GitHub repo, the live website updates instantly.
 
 ---
 
-## 📬 Contact
+## 📫 Contact
 
-Feel free to connect with me:
+For feedback, collaboration, or inquiries:
 
-- Email: cheruyotevans646@gmail.com
-- GitHub: [Ab494](https://github.com/Ab494)
+- Email: cheruyotevans646@gmail.com  
+- GitHub: [github.com/Ab494](https://github.com/Ab494)
 
 ---
 
-## 📜 License
+## 📝 License
 
-This project is open source under the [MIT License](LICENSE).
+This project is licensed under the [MIT License](LICENSE).
 
+---
+
+Built with 💻 and a lot of 💪 during a hackathon event — aiming for the 🏆
