@@ -32,7 +32,6 @@ The portfolio showcases my software development projects, education background, 
 
 ## 🧭 Project Structure
 
-.
 ├── files/
 │   └── evans_cv.pdf
 ├── images/
