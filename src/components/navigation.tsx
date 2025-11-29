@@ -17,6 +17,7 @@ const navItems = [
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [activeSection, setActiveSection] = useState('hero')
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -92,15 +93,85 @@ export function Navigation() {
           {/* Mobile menu button */}
           <div className="md:hidden">
             <motion.button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="p-2 text-text-secondary hover:text-primary transition-colors"
               whileTap={{ scale: 0.95 }}
+              aria-label="Toggle mobile menu"
+              aria-expanded={isMobileMenuOpen}
             >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M3 12h18M3 6h18M3 18h18"/>
-              </svg>
+              <motion.svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                animate={isMobileMenuOpen ? "open" : "closed"}
+              >
+                <motion.path
+                  variants={{
+                    closed: { d: "M3 12h18" },
+                    open: { d: "M3 18h18" }
+                  }}
+                  transition={{ duration: 0.2 }}
+                />
+                <motion.path
+                  variants={{
+                    closed: { d: "M3 6h18" },
+                    open: { d: "M3 6L17 20" }
+                  }}
+                  transition={{ duration: 0.2 }}
+                />
+                <motion.path
+                  variants={{
+                    closed: { d: "M3 18h18" },
+                    open: { d: "M3 12L17 4" }
+                  }}
+                  transition={{ duration: 0.2 }}
+                />
+              </motion.svg>
             </motion.button>
           </div>
         </div>
+
+        {/* Mobile menu */}
+        <motion.div
+          className={`md:hidden overflow-hidden ${
+            isScrolled ? 'bg-card/95 backdrop-blur-md' : 'bg-card/98 backdrop-blur-md'
+          } border-t border-border`}
+          initial={false}
+          animate={{
+            height: isMobileMenuOpen ? 'auto' : 0,
+            opacity: isMobileMenuOpen ? 1 : 0
+          }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+        >
+          <div className="px-4 py-4 space-y-2">
+            {navItems.map((item, index) => (
+              <motion.a
+                key={item.href}
+                href={item.href}
+                className={`block px-4 py-3 rounded-lg transition-colors ${
+                  activeSection === item.href.substring(1)
+                    ? 'bg-primary/10 text-primary border-l-4 border-primary'
+                    : 'text-text-secondary hover:text-primary hover:bg-primary/5'
+                }`}
+                onClick={() => setIsMobileMenuOpen(false)}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{
+                  opacity: isMobileMenuOpen ? 1 : 0,
+                  x: isMobileMenuOpen ? 0 : -20
+                }}
+                transition={{
+                  duration: 0.3,
+                  delay: isMobileMenuOpen ? index * 0.1 : 0
+                }}
+              >
+                {item.label}
+              </motion.a>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </motion.nav>
   )
