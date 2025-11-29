@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { Button } from './ui/button'
 import { Input } from './ui/input'
 import { Textarea } from './ui/textarea'
+import { FaXTwitter, FaLinkedin, FaGithub } from 'react-icons/fa6'
 
 export function Contact() {
   const [formData, setFormData] = useState({
@@ -214,9 +215,9 @@ export function Contact() {
                   variants={containerVariants}
                 >
                   {[
-                    { href: "https://x.com/EvansCheru48487", label: "Twitter", icon: "𝕏" },
-                    { href: "https://www.linkedin.com/in/evans-kipngeno-cheruiyot-448458346/", label: "LinkedIn", icon: "💼" },
-                    { href: "https://github.com/Ab494", label: "GitHub", icon: "🐙" }
+                    { href: "https://x.com/EvansCheru48487", label: "X (Twitter)", icon: FaXTwitter },
+                    { href: "https://www.linkedin.com/in/evans-kipngeno-cheruiyot-448458346/", label: "LinkedIn", icon: FaLinkedin },
+                    { href: "https://github.com/Ab494", label: "GitHub", icon: FaGithub }
                   ].map((social, index) => (
                     <motion.a
                       key={social.label}
@@ -234,7 +235,7 @@ export function Contact() {
                       whileTap={{ scale: 0.9 }}
                       transition={{ duration: 0.2 }}
                     >
-                      <span className="text-primary">{social.icon}</span>
+                      <social.icon className="text-primary text-lg" />
                     </motion.a>
                   ))}
                 </motion.div>
