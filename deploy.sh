@@ -94,7 +94,7 @@ fi
 # Check for static export if needed
 if [ "$1" = "export" ]; then
     print_status "Exporting static files..."
-    if npm run export; then
+    if npm run build; then
         print_success "Static export completed"
         if [ -d "out" ]; then
             print_success "Static files available in 'out' directory"

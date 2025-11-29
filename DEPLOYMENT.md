@@ -19,10 +19,10 @@ Since you have Node v18, here's the **fastest way to deploy**:
 ### **🚀 Netlify Drag & Drop (2 Minutes)**
 1. Go to [netlify.com](https://netlify.com)
 2. Sign up/login with GitHub
-3. **Drag and drop your entire project folder** onto the dashboard
-4. Set build settings:
+3. **Drag and drop the 'out' folder contents** onto the dashboard
+4. **OR** connect your GitHub repository and set:
    - Build command: `npm run build`
-   - Publish directory: `.next`
+   - Publish directory: `out`
 5. Click "Deploy site"
 6. **Done!** Your portfolio will be live in 2 minutes
 
@@ -33,7 +33,7 @@ npm install -g surge
 
 # Build and deploy
 npm run build
-surge .next
+surge out
 ```
 
 ## 🌐 All Deployment Options

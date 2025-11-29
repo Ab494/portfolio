@@ -1,6 +1,6 @@
 1:HL["/_next/static/media/e4af272ccee01ff0-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 2:HL["/_next/static/css/81f4f54c81e99657.css","style",{"crossOrigin":""}]
-0:["Vf3254MarK9c7fL919HWt",[[["",{"children":["__PAGE__",{}]},"$undefined","$undefined",true],"$L3",[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/81f4f54c81e99657.css","precedence":"next","crossOrigin":""}]],"$L4"]]]]
+0:["zHlPZT1zIjhx2o427IGFv",[[["",{"children":["__PAGE__",{}]},"$undefined","$undefined",true],"$L3",[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/81f4f54c81e99657.css","precedence":"next","crossOrigin":""}]],"$L4"]]]]
 5:I[6954,[],""]
 6:I[7264,[],""]
 c:I[8353,["185","static/chunks/app/layout-c23b9d22c6cba5d7.js"],"ServiceWorkerRegistration"]
