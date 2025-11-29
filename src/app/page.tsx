@@ -1,7 +1,6 @@
 import { Navigation } from '@/components/navigation'
 import { ScrollProgress } from '@/components/scroll-progress'
 import { VoiceControl } from '@/components/voice-control'
-import { ParticleSystem } from '@/components/particle-system'
 import { DynamicAdaptation } from '@/components/dynamic-adaptation'
 import { Hero } from '@/components/hero'
 import { About } from '@/components/about'
@@ -17,7 +16,6 @@ import { Contact } from '@/components/contact'
 export default function Home() {
   return (
     <main className="min-h-screen">
-      <ParticleSystem />
       <ScrollProgress />
       <VoiceControl />
       <DynamicAdaptation />

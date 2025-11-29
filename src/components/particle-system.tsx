@@ -16,7 +16,7 @@ interface Particle {
   shape: 'circle' | 'square' | 'triangle'
 }
 
-const TECH_LOGOS = ['JS', '⚛️', '🐍', '🎯', '💻', '🚀', '⚡', '🔥']
+const TECH_LOGOS = ['JS', '', '', '', '', '', '⚡', '']
 
 export function ParticleSystem() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
