@@ -18,7 +18,7 @@ export function DynamicAdaptation() {
           <div className="bg-card/95 backdrop-blur-md border border-primary/20 rounded-lg p-4 shadow-2xl">
             <div className="flex items-start gap-3">
               <div className="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0">
-                <span className="text-primary text-sm">🤖</span>
+                <span className="text-primary text-sm"></span>
               </div>
               <div className="flex-1">
                 <p className="text-sm text-text-secondary leading-relaxed">
@@ -50,7 +50,7 @@ export function DynamicAdaptation() {
           >
             <div className="bg-gradient-to-r from-primary/20 to-primary/10 border border-primary/30 rounded-lg p-3 shadow-lg">
               <p className="text-sm font-medium text-primary">
-                🎓 Advanced Skills Unlocked!
+                 Advanced Skills Unlocked!
               </p>
               <p className="text-xs text-text-secondary">
                 Thanks for exploring deeply
@@ -96,7 +96,7 @@ export function DynamicAdaptation() {
           >
             <div className="bg-card/90 backdrop-blur-md border border-border rounded-full px-4 py-2 shadow-lg">
               <p className="text-xs text-primary font-medium">
-                ✨ Enhanced Experience Activated
+                 Enhanced Experience Activated
               </p>
             </div>
           </motion.div>

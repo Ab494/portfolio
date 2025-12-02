@@ -18,15 +18,15 @@ const educationData = [
   },
   {
     icon: '',
-    date: '2024 - Present',
+    date: '2025 (June - November)',
     title: 'Software Engineering Program',
     institution: 'PLP Academy',
     description: 'Intensive software engineering bootcamp focusing on modern development practices and project-based learning.',
     skills: [
       'Full-stack Web Development',
-      'Backend API Development',
-      'Modern Development Practices',
-      'Project-based Learning'
+      'Python & Django',
+      'Web Technologies',
+      'Startup building'
     ]
   }
 ]
