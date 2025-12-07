@@ -1,6 +1,6 @@
 import { Navigation } from '@/components/navigation'
 import { ScrollProgress } from '@/components/scroll-progress'
-import { VoiceControl } from '@/components/voice-control'
+//import { VoiceControl } from '@/components/voice-control'
 import { DynamicAdaptation } from '@/components/dynamic-adaptation'
 import { Hero } from '@/components/hero'
 import { About } from '@/components/about'
@@ -17,7 +17,7 @@ export default function Home() {
   return (
     <main className="min-h-screen">
       <ScrollProgress />
-      <VoiceControl />
+      
       <DynamicAdaptation />
       <Navigation />
       <Hero />

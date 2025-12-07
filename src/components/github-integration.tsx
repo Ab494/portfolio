@@ -78,11 +78,11 @@ export function GitHubIntegration() {
   }, [])
 
   const statItems = [
-    { label: 'Repositories', value: stats.repos, icon: '📁' },
-    { label: 'Followers', value: stats.followers, icon: '👥' },
-    { label: 'Following', value: stats.following, icon: '👤' },
-    { label: 'Stars Earned', value: stats.stars, icon: '⭐' },
-    { label: 'Contributions', value: stats.contributions, icon: '📊' }
+    { label: 'Repositories', value: stats.repos, icon: '' },
+    { label: 'Followers', value: stats.followers, icon: '' },
+    { label: 'Following', value: stats.following, icon: '' },
+    { label: 'Stars Earned', value: stats.stars, icon: '' },
+    { label: 'Contributions', value: stats.contributions, icon: '' }
   ]
 
   return (
@@ -167,7 +167,7 @@ export function GitHubIntegration() {
                   {repo.name}
                 </h3>
                 <div className="flex items-center gap-1 text-sm text-text-secondary">
-                  <span>⭐</span>
+                  <span></span>
                   <span>{repo.stars}</span>
                 </div>
               </div>

@@ -147,7 +147,7 @@ export function Contact() {
                     }}
                     transition={{ duration: 0.2 }}
                   >
-                    <span className="text-primary text-lg">✉️</span>
+                    <span className="text-primary text-lg"></span>
                   </motion.div>
                   <div>
                     <p className="font-medium text-foreground">Email</p>
@@ -169,7 +169,7 @@ export function Contact() {
                     }}
                     transition={{ duration: 0.2 }}
                   >
-                    <span className="text-primary text-lg">📱</span>
+                    <span className="text-primary text-lg"></span>
                   </motion.div>
                   <div>
                     <p className="font-medium text-foreground">Phone</p>
@@ -191,7 +191,7 @@ export function Contact() {
                     }}
                     transition={{ duration: 0.2 }}
                   >
-                    <span className="text-primary text-lg">📍</span>
+                    <span className="text-primary text-lg"></span>
                   </motion.div>
                   <div>
                     <p className="font-medium text-foreground">Location</p>

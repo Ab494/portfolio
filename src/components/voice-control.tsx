@@ -1,5 +1,6 @@
-'use client'
 
+'use client'
+/*
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from './ui/button'
@@ -230,7 +231,7 @@ export function VoiceControl() {
           command.action()
 
           // Show success feedback
-          showFeedback(`🎯 Executed: ${command.description}`)
+          showFeedback(` Executed: ${command.description}`)
 
           // Provide audio feedback
           const successMessages = [
@@ -248,7 +249,7 @@ export function VoiceControl() {
     }
 
     // If no command matched
-    showFeedback('❓ Command not recognized. Try "show me your projects" or "contact information"')
+    showFeedback(' Command not recognized. Try "show me your projects" or "contact information"')
     speak('Command not recognized. Try saying show me your projects or contact information.')
   }
 
@@ -317,7 +318,7 @@ export function VoiceControl() {
 
   return (
     <>
-      {/* Voice Control Button */}
+      {/* Voice Control Button *//*}
       <motion.div
         className="fixed bottom-6 left-6 z-50"
         initial={{ scale: 0 }}
@@ -386,7 +387,7 @@ export function VoiceControl() {
           </motion.div>
         </Button>
 
-        {/* Status indicators */}
+        {/* Status indicators *//*}
         <AnimatePresence>
           {isListening && (
             <motion.div
@@ -421,7 +422,7 @@ export function VoiceControl() {
         </AnimatePresence>
       </motion.div>
 
-      {/* Transcript Display */}
+      {/* Transcript Display *//*}
       <AnimatePresence>
         {showTranscript && (
           <motion.div
@@ -437,7 +438,7 @@ export function VoiceControl() {
         )}
       </AnimatePresence>
 
-      {/* Voice Commands Help */}
+      {/* Voice Commands Help *//*}
       <motion.div
         className="fixed bottom-6 right-6 z-50"
         initial={{ scale: 0 }}
@@ -459,7 +460,7 @@ export function VoiceControl() {
         </Button>
       </motion.div>
 
-      {/* Voice Commands Modal */}
+      {/* Voice Commands Modal *//*}
       <div
         id="voice-help"
         className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden"
@@ -472,7 +473,7 @@ export function VoiceControl() {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-card p-6 rounded-lg border border-border max-w-md w-full mx-4">
           <h3 className="text-lg font-semibold mb-4 text-primary">🎤 Voice Commands</h3>
 
-          {/* Voice Feedback Toggle */}
+          {/* Voice Feedback Toggle *//*}
           <div className="flex items-center justify-between mb-4 p-3 bg-muted/50 rounded-lg">
             <div>
               <p className="font-medium text-sm">Voice Feedback</p>
@@ -492,14 +493,14 @@ export function VoiceControl() {
             </button>
           </div>
 
-          {/* Test Voice Button */}
+          {/* Test Voice Button *//*}
           <div className="mb-4">
             <Button
               onClick={() => speak('Hello! Voice synthesis is working correctly.')}
               className="w-full"
               disabled={!voiceFeedbackEnabled}
             >
-              🔊 Test Voice
+               Test Voice
             </Button>
           </div>
 
@@ -522,3 +523,4 @@ export function VoiceControl() {
     </>
   )
 }
+*/

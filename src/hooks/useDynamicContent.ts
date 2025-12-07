@@ -155,11 +155,11 @@ export function useDynamicContent() {
 
     // Personalized messages based on behavior
     if (behavior.timeOnPage > 120) {
-      newAdaptations.personalizedMessage = "Wow! You've been exploring for over 2 minutes. Thanks for your interest! 🚀"
+      //newAdaptations.personalizedMessage = "Wow! You've been exploring for over 2 minutes. Thanks for your interest! "
     } else if (behavior.scrollDepth > 90) {
-      newAdaptations.personalizedMessage = "You've seen the full portfolio! Impressive dedication! 🎯"
+      //newAdaptations.personalizedMessage = "You've seen the full portfolio! Impressive dedication! "
     } else if (behavior.sectionsVisited.length >= 5) {
-      newAdaptations.personalizedMessage = "You're checking out all sections - great attention to detail! 💡"
+      //newAdaptations.personalizedMessage = "You're checking out all sections - great attention to detail! "
     }
 
     setAdaptations(newAdaptations)
