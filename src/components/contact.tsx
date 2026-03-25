@@ -7,6 +7,8 @@ import { Input } from './ui/input'
 import { Textarea } from './ui/textarea'
 import { FaXTwitter, FaLinkedin, FaGithub } from 'react-icons/fa6'
 
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xqegzoav'
+
 export function Contact() {
   const [formData, setFormData] = useState({
     name: '',
@@ -14,11 +16,35 @@ export function Contact() {
     subject: '',
     message: ''
   })
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle form submission
-    console.log('Form submitted:', formData)
+    setStatus('loading')
+    
+    try {
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message
+        })
+      })
+      
+      if (response.ok) {
+        setStatus('success')
+        setFormData({ name: '', email: '', subject: '', message: '' })
+      } else {
+        setStatus('error')
+      }
+    } catch (error) {
+      setStatus('error')
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -361,6 +387,30 @@ export function Contact() {
                   />
                 </motion.div>
 
+                {status === 'success' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="p-4 bg-emerald-50 border border-emerald-200 rounded-lg"
+                  >
+                    <p className="text-emerald-800 font-medium text-center">
+                      ✓ Message sent successfully! I'll get back to you soon.
+                    </p>
+                  </motion.div>
+                )}
+
+                {status === 'error' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="p-4 bg-red-50 border border-red-200 rounded-lg"
+                  >
+                    <p className="text-red-800 font-medium text-center">
+                      ✗ Something went wrong. Please try again or email directly.
+                    </p>
+                  </motion.div>
+                )}
+
                 <motion.div
                   variants={contactItemVariants}
                   whileHover={{ scale: 1.02 }}
@@ -368,13 +418,14 @@ export function Contact() {
                 >
                   <Button
                     type="submit"
-                    className="w-full bg-primary hover:bg-primary-hover text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300"
+                    disabled={status === 'loading'}
+                    className="w-full bg-primary hover:bg-primary-hover text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50"
                   >
                     <motion.span
                       whileHover={{ scale: 1.05 }}
                       transition={{ type: "spring", stiffness: 400 }}
                     >
-                      Send Message
+                      {status === 'loading' ? 'Sending...' : 'Send Message'}
                     </motion.span>
                   </Button>
                 </motion.div>
