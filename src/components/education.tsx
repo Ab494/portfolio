@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 const educationData = [
   {
     icon: '',
-    date: '2024 - 2026 (Expected)',
+    date: '2024 - completed',
     title: 'Diploma in Information Communication Technology',
     institution: 'Eldoret National Polytechnic',
     description: 'Comprehensive ICT program covering software development, database management, network administration, and systems analysis.',
