@@ -2,74 +2,78 @@
 
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import { Star, GitFork, Calendar } from 'lucide-react'
 
 interface GitHubStats {
-  repos: number
+  public_repos: number
   followers: number
   following: number
-  stars: number
   contributions: number
 }
 
 interface GitHubRepo {
+  id: number
   name: string
   description: string
-  stars: number
+  stargazers_count: number
+  forks_count: number
   language: string
-  updatedAt: string
+  updated_at: string
+  html_url: string
 }
+
+const GITHUB_USERNAME = 'Ab494'
 
 export function GitHubIntegration() {
   const [stats, setStats] = useState<GitHubStats>({
-    repos: 0,
+    public_repos: 0,
     followers: 0,
     following: 0,
-    stars: 0,
     contributions: 0
   })
   const [repos, setRepos] = useState<GitHubRepo[]>([])
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    // Simulate GitHub API calls (replace with real API calls)
     const fetchGitHubData = async () => {
       try {
-        // Mock data - replace with real GitHub API calls
+        // Fetch user data
+        const userResponse = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}`)
+        if (!userResponse.ok) {
+          throw new Error('Failed to fetch GitHub user data')
+        }
+        const userData = await userResponse.json()
+
+        // Fetch user contributions (requires different endpoint)
+        const contribResponse = await fetch(`https://github-contributions-api.jogruber.de/v4/${GITHUB_USERNAME}`)
+        let contributions = 0
+        if (contribResponse.ok) {
+          const contribData = await contribResponse.json()
+          contributions = contribData.contributions || 0
+        }
+
         setStats({
-          repos: 24,
-          followers: 156,
-          following: 89,
-          stars: 342,
-          contributions: 1247
+          public_repos: userData.public_repos || 0,
+          followers: userData.followers || 0,
+          following: userData.following || 0,
+          contributions: contributions
         })
 
-        setRepos([
-          {
-            name: 'portfolio-nextjs',
-            description: 'Modern portfolio built with Next.js, featuring advanced animations and interactions',
-            stars: 45,
-            language: 'TypeScript',
-            updatedAt: '2024-01-15'
-          },
-          {
-            name: 'mern-ecommerce',
-            description: 'Full-stack e-commerce platform with MERN stack and Stripe integration',
-            stars: 78,
-            language: 'JavaScript',
-            updatedAt: '2024-01-10'
-          },
-          {
-            name: 'django-api-boilerplate',
-            description: 'Production-ready Django REST API boilerplate with authentication and documentation',
-            stars: 92,
-            language: 'Python',
-            updatedAt: '2024-01-08'
-          }
-        ])
+        // Fetch repositories (sorted by stars)
+        const reposResponse = await fetch(
+          `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=3`
+        )
+        if (!reposResponse.ok) {
+          throw new Error('Failed to fetch repositories')
+        }
+        const reposData = await reposResponse.json()
 
+        setRepos(reposData)
         setLoading(false)
-      } catch (error) {
-        console.error('Failed to fetch GitHub data:', error)
+      } catch (err) {
+        console.error('Failed to fetch GitHub data:', err)
+        setError('Failed to load GitHub data')
         setLoading(false)
       }
     }
@@ -78,11 +82,9 @@ export function GitHubIntegration() {
   }, [])
 
   const statItems = [
-    { label: 'Repositories', value: stats.repos, icon: '' },
-    { label: 'Followers', value: stats.followers, icon: '' },
-    { label: 'Following', value: stats.following, icon: '' },
-    { label: 'Stars Earned', value: stats.stars, icon: '' },
-    { label: 'Contributions', value: stats.contributions, icon: '' }
+    { label: 'Repos', value: stats.public_repos },
+    { label: 'Followers', value: stats.followers },
+    { label: 'Following', value: stats.following }
   ]
 
   return (
@@ -106,21 +108,27 @@ export function GitHubIntegration() {
           transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
           viewport={{ once: true }}
         >
-          Live GitHub statistics and recent repository activity
+          Live GitHub statistics and recent repository activity from @{GITHUB_USERNAME}
         </motion.p>
+
+        {error && (
+          <div className="text-center text-red-400 mb-8">
+            {error}. Showing cached data.
+          </div>
+        )}
 
         {/* Stats Grid */}
         <motion.div
-          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-12"
+          className="grid grid-cols-3 gap-2"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true }}
         >
           {statItems.map((stat, index) => (
             <motion.div
               key={stat.label}
-              className="bg-card p-4 rounded-lg border border-border hover:border-primary/50 transition-all duration-300 text-center"
+              className="bg-card p-2 rounded-lg border border-border hover:border-primary/50 transition-all duration-300 text-center"
               whileHover={{
                 scale: 1.05,
                 y: -5,
@@ -128,9 +136,8 @@ export function GitHubIntegration() {
               }}
               transition={{ duration: 0.3 }}
             >
-              <div className="text-2xl mb-2">{stat.icon}</div>
               <motion.div
-                className="text-2xl font-bold text-primary mb-1"
+                className="text-lg font-bold text-primary"
                 initial={{ scale: 0 }}
                 whileInView={{ scale: 1 }}
                 transition={{ delay: index * 0.1, type: "spring", stiffness: 200 }}
@@ -145,111 +152,114 @@ export function GitHubIntegration() {
 
         {/* Recent Repositories */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid grid-cols-1 md:grid-cols-3 gap-4"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
           viewport={{ once: true }}
         >
-          {repos.map((repo, index) => (
-            <motion.div
-              key={repo.name}
-              className="bg-card p-6 rounded-lg border border-border hover:border-primary/50 transition-all duration-300 group"
-              whileHover={{
-                scale: 1.02,
-                y: -5,
-                boxShadow: "0 15px 35px rgba(59, 130, 246, 0.1)"
-              }}
-              transition={{ duration: 0.3 }}
-            >
-              <div className="flex items-start justify-between mb-3">
-                <h3 className="text-lg font-semibold text-primary group-hover:text-primary-hover transition-colors">
-                  {repo.name}
-                </h3>
-                <div className="flex items-center gap-1 text-sm text-text-secondary">
-                  <span></span>
-                  <span>{repo.stars}</span>
-                </div>
+          {loading ? (
+            // Loading skeletons
+            [1, 2, 3].map((i) => (
+              <div key={i} className="bg-card p-4 rounded-lg border border-border animate-pulse">
+                <div className="h-5 bg-primary/20 rounded w-3/4 mb-2"></div>
+                <div className="h-3 bg-primary/10 rounded w-full mb-1"></div>
+                <div className="h-3 bg-primary/10 rounded w-1/2"></div>
               </div>
-
-              <p className="text-text-secondary text-sm mb-4 leading-relaxed">
-                {repo.description}
-              </p>
-
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <div
-                    className="w-3 h-3 rounded-full"
-                    style={{
-                      backgroundColor: getLanguageColor(repo.language)
-                    }}
-                  />
-                  <span className="text-xs text-text-secondary">{repo.language}</span>
-                </div>
-                <span className="text-xs text-text-secondary">
-                  Updated {new Date(repo.updatedAt).toLocaleDateString()}
-                </span>
-              </div>
-
-              <motion.a
-                href={`https://github.com/Ab494/${repo.name}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 mt-4 text-primary hover:text-primary-hover transition-colors text-sm font-medium"
-                whileHover={{ x: 3 }}
-                transition={{ type: "spring", stiffness: 400 }}
+            ))
+          ) : (
+            repos.map((repo) => (
+              <motion.div
+                key={repo.id}
+                className="bg-card p-4 rounded-lg border border-border hover:border-primary/50 transition-all duration-300 group"
+                whileHover={{
+                  scale: 1.02,
+                  y: -5,
+                  boxShadow: "0 15px 35px rgba(59, 130, 246, 0.1)"
+                }}
+                transition={{ duration: 0.3 }}
               >
-                View Repository
-                <motion.svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  initial={{ x: 0 }}
-                  whileHover={{ x: 3 }}
+                <div className="flex items-start justify-between mb-2">
+                  <h3 className="text-base font-semibold text-primary group-hover:text-primary-hover transition-colors">
+                    {repo.name}
+                  </h3>
+                  <div className="flex items-center gap-1 text-xs text-text-secondary">
+                    <Star size={12} className="text-yellow-500" />
+                    <span>{repo.stargazers_count}</span>
+                  </div>
+                </div>
+
+                <p className="text-text-secondary text-xs mb-3 line-clamp-2">
+                  {repo.description || 'No description available'}
+                </p>
+
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-1.5">
+                    <div
+                      className="w-2.5 h-2.5 rounded-full"
+                      style={{
+                        backgroundColor: getLanguageColor(repo.language)
+                      }}
+                    />
+                    <span className="text-xs text-text-secondary">{repo.language || 'Unknown'}</span>
+                  </div>
+                  <div className="flex items-center gap-1 text-xs text-text-secondary">
+                    <GitFork size={10} />
+                    <span>{repo.forks_count}</span>
+                  </div>
+                </div>
+
+                <motion.a
+                  href={repo.html_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 mt-3 text-primary hover:text-primary-hover transition-colors text-xs font-medium"
+                  whileHover={{ x: 2 }}
                   transition={{ type: "spring", stiffness: 400 }}
                 >
-                  <path d="M7 17L17 7M17 7H7M17 7V17"/>
-                </motion.svg>
-              </motion.a>
-            </motion.div>
-          ))}
+                  View
+                  <motion.svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    initial={{ x: 0 }}
+                    whileHover={{ x: 2 }}
+                    transition={{ type: "spring", stiffness: 400 }}
+                  >
+                    <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                  </motion.svg>
+                </motion.a>
+              </motion.div>
+            ))
+          )}
         </motion.div>
 
-        {/* Contribution Graph Placeholder */}
+        {/* View all repos link */}
         <motion.div
-          className="mt-12 bg-card p-6 rounded-lg border border-border"
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
+          className="text-center mt-6"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ delay: 0.8 }}
           viewport={{ once: true }}
         >
-          <h3 className="text-xl font-semibold mb-4 text-primary">Contribution Activity</h3>
-          <div className="grid grid-cols-7 gap-1 mb-4">
-            {Array.from({ length: 35 }, (_, i) => (
-              <motion.div
-                key={i}
-                className="w-3 h-3 rounded-sm bg-primary/20"
-                initial={{ opacity: 0, scale: 0 }}
-                whileInView={{ opacity: Math.random(), scale: 1 }}
-                transition={{ delay: i * 0.02, duration: 0.5 }}
-                viewport={{ once: true }}
-                whileHover={{ scale: 1.5, opacity: 1 }}
-              />
-            ))}
-          </div>
-          <p className="text-sm text-text-secondary">
-            <span className="text-primary font-medium">{stats.contributions}</span> contributions in the last year
-          </p>
+          <a
+            href={`https://github.com/${GITHUB_USERNAME}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary-hover transition-colors"
+          >
+            View All Repositories on GitHub
+          </a>
         </motion.div>
       </div>
     </section>
   )
 }
 
-function getLanguageColor(language: string): string {
+function getLanguageColor(language: string | null): string {
   const colors: { [key: string]: string } = {
     TypeScript: '#3178c6',
     JavaScript: '#f1e05a',
@@ -261,7 +271,11 @@ function getLanguageColor(language: string): string {
     PHP: '#777BB4',
     Ruby: '#701516',
     Go: '#00ADD8',
-    Rust: '#dea584'
+    Rust: '#dea584',
+    Shell: '#89e051',
+    Vue: '#41b883',
+    Dart: '#00B4AB',
+    Kotlin: '#A97BFF'
   }
-  return colors[language] || '#586069'
+  return colors[language || ''] || '#586069'
 }

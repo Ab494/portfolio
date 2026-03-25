@@ -147,11 +147,11 @@ export function Contact() {
                     }}
                     transition={{ duration: 0.2 }}
                   >
-                    <span className="text-primary text-lg"></span>
+                    <span className="text-primary text-lg">📧</span>
                   </motion.div>
                   <div>
-                    <p className="font-medium text-foreground">Email</p>
-                    <p className="text-text-secondary">cheruiyotevans646@gmail.com</p>
+                    <p className="font-semibold text-lg text-foreground">Email</p>
+                    <p className="text-text-secondary text-base">cheruiyotevans646@gmail.com</p>
                   </div>
                 </motion.div>
 
@@ -169,11 +169,11 @@ export function Contact() {
                     }}
                     transition={{ duration: 0.2 }}
                   >
-                    <span className="text-primary text-lg"></span>
+                    <span className="text-primary text-lg">📱</span>
                   </motion.div>
                   <div>
-                    <p className="font-medium text-foreground">Phone</p>
-                    <p className="text-text-secondary">+254 711546105</p>
+                    <p className="font-semibold text-lg text-foreground">Phone</p>
+                    <p className="text-text-secondary text-base">+254 711546105</p>
                   </div>
                 </motion.div>
 
@@ -191,12 +191,40 @@ export function Contact() {
                     }}
                     transition={{ duration: 0.2 }}
                   >
-                    <span className="text-primary text-lg"></span>
+                    <span className="text-primary text-lg">📍</span>
                   </motion.div>
                   <div>
-                    <p className="font-medium text-foreground">Location</p>
-                    <p className="text-text-secondary">Eldoret, Kenya</p>
+                    <p className="font-semibold text-lg text-foreground">Location</p>
+                    <p className="text-text-secondary text-base">Eldoret, Kenya (Remote Work Available)</p>
                   </div>
+                </motion.div>
+
+                <motion.div
+                  className="mt-6 p-4 bg-emerald-50 border border-emerald-200 rounded-lg"
+                  variants={contactItemVariants}
+                >
+                  <p className="text-emerald-800 font-medium text-center">
+                    Response Time: Within 24 hours
+                  </p>
+                </motion.div>
+
+                <motion.div
+                  className="mt-6"
+                  variants={contactItemVariants}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Button
+                    onClick={() => document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })}
+                    className="w-full bg-emerald-500 hover:bg-emerald-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 text-lg py-4"
+                  >
+                    <motion.span
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ type: "spring", stiffness: 400 }}
+                    >
+                      Send Me a Message
+                    </motion.span>
+                  </Button>
                 </motion.div>
               </motion.div>
 
@@ -245,6 +273,7 @@ export function Contact() {
 
           {/* Contact Form */}
           <motion.div
+            id="contact-form"
             variants={cardVariants}
           >
             <motion.div

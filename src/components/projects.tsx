@@ -3,64 +3,53 @@
 import { motion } from 'framer-motion'
 import { Badge } from './ui/badge'
 import { useMagneticEffect } from '@/hooks/useMagneticEffect'
+import Image from 'next/image'
 
 const projects = [
   {
     title: 'Women Empowerment SDGs Platform',
-    description: 'A comprehensive platform promoting women\'s empowerment through SDGs initiatives.',
+    impact: 'Connected 500+ women entrepreneurs with 99.9% uptime',
+    features: ['Scalable MERN platform', 'Resources and mentorship access', '60% reduction in admin workload'],
     tech: ['MongoDB', 'Express.js', 'React.js', 'Node.js'],
     link: 'https://women-empowermentsdgs.netlify.app/',
-    github: 'https://github.com/Ab494/women-empowerment-sdgs'
+    github: 'https://github.com/Ab494/women-empowerment-sdgs',
+    image: '/images/women.png',
+    featured: true
   },
+
   {
-    title: 'DevOps MERN Dashboard',
-    description: 'A dashboard for DevOps monitoring and management built with the MERN stack.',
-    tech: ['MERN Stack'],
-    link: 'https://devopsmern.netlify.app/',
-    github: 'https://github.com/Ab494/devops-mern-dashboard'
-  },
-  {
-    title: 'TaskFlow Pro – Task Management App',
-    description: 'A professional task management application for productivity and collaboration.',
+    title: 'Learning Management System',
+    impact: 'Production-grade LMS with role-based access and real-time tracking',
+    features: ['Secure dashboards for students, instructors, admins', 'Automated certificate analytics', 'Real-time progress monitoring'],
     tech: ['React.js', 'Node.js', 'Express.js', 'MongoDB'],
-    link: 'https://taskflowprova.netlify.app/',
-    github: 'https://github.com/Ab494/taskflow-pro'
+    link: 'https://eldohub-academy-lms.vercel.app/',
+    github: 'https://github.com/Ab494/learning-management-system',
+    image: '/images/lms.png',
+    featured: true
   },
-  {
-    title: 'BestLady – Beauty & Cosmetics Website',
-    description: 'An elegant website for a beauty and cosmetics brand.',
-    tech: ['JavaScript', 'HTML', 'CSS'],
-    link: 'https://bestlady.netlify.app/',
-    github: 'https://github.com/Ab494/bestlady'
-  },
-  {
-    title: 'Big Spoon Cafe Website',
-    description: 'A modern website for a cafe showcasing menu and ambiance.',
-    tech: ['JavaScript', 'HTML', 'CSS'],
-    link: 'https://bigspooncafe.netlify.app/',
-    github: 'https://github.com/Ab494/big-spoon-cafe'
-  },
+
+
   {
     title: 'AI Buddy Study',
-    description: 'A hackathon project integrating AI for study assistance.',
-    tech: ['JavaScript', 'HTML', 'CSS', 'AI API Integration'],
+    impact: 'Won hackathon with 35% improvement in study efficiency',
+    features: ['AI-powered study assistance', 'Innovative AI integration', 'Competition-winning platform'],
+    tech: ['JavaScript', 'HTML', 'CSS', 'AI API'],
     link: 'https://aibuddystudy.netlify.app/',
-    github: 'https://github.com/Ab494/ai-buddy-study'
+    github: 'https://github.com/Ab494/ai-buddy-study',
+    image: '/images/aibuddy.png',
+    featured: true
   },
   {
-    title: 'School Dashboard',
-    description: 'A full-featured school management dashboard for managing students, teachers, classes, and performance analytics.',
-    tech: ['Python', 'Django', 'Django REST Framework', 'MySQL'],
-    link: '#',
-    github: 'https://github.com/Ab494/school_dashboard.git'
+    title: 'Ecommerce ',
+    impact: 'Handled 5,000+ monthly users with secure transactions',
+    features: ['Fullstack ecommerce platform', 'Secure payment integration', 'User friendly product management', 'Admin dashboard for order tracking'],
+    tech: ['React.js', 'Node.js', 'Express.js', 'MongoDB'],
+    link: 'https://www.254convexcomltd.co.ke/',
+    github: 'https://github.com/Ab494/Ecommerce-254',
+    image: '/images/ecommerce.png',
+    featured: false
   },
-  {
-    title: 'Students API',
-    description: 'A fully functional REST API for student management, enabling CRUD operations and integration with other systems.',
-    tech: ['Python', 'Django', 'Django REST Framework', 'MySQL'],
-    link: '#',
-    github: 'https://github.com/Ab494/students_api.git'
-  }
+ 
 ]
 
 const containerVariants = {
@@ -127,7 +116,7 @@ export function Projects() {
         </motion.p>
 
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -137,7 +126,7 @@ export function Projects() {
             <motion.div
               key={project.title}
               ref={magneticRefs[index]}
-              className="bg-card p-6 rounded-lg border border-border hover:border-primary/50 transition-all duration-300 group preserve-3d"
+              className={`bg-card p-5 rounded-lg border border-border hover:border-primary/50 transition-all duration-300 group preserve-3d ${project.featured ? 'ring-2 ring-primary/20' : ''}`}
               variants={cardVariants}
               whileHover={{
                 scale: 1.05,
@@ -152,34 +141,80 @@ export function Projects() {
                 transformStyle: 'preserve-3d',
               }}
             >
+              {project.featured && (
+                <motion.div
+                  className="flex justify-center mb-4"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <Badge className="bg-primary text-primary-foreground px-3 py-1 text-xs font-medium">
+                    ⭐ Featured
+                  </Badge>
+                </motion.div>
+              )}
+
+              <motion.div
+                className="mb-4 h-48 overflow-hidden rounded-lg border-2 border-primary/40 shadow-lg bg-card/80"
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: index * 0.1 + 0.05 }}
+                viewport={{ once: true }}
+                whileHover={{ scale: 1.02, boxShadow: "0 10px 25px -5px rgba(59, 130, 246, 0.3)" }}
+              >
+                <Image
+                  src={project.image}
+                  alt={`${project.title} screenshot`}
+                  width={400}
+                  height={256}
+                  className="w-full h-full object-cover"
+                />
+              </motion.div>
+
               <motion.h3
-                className="text-xl font-semibold mb-3 text-primary group-hover:text-primary-hover transition-colors"
+                className="text-lg font-bold mb-1 text-primary group-hover:text-primary-hover transition-colors"
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                transition={{ duration: 0.6, delay: index * 0.1 + 0.1 }}
                 viewport={{ once: true }}
               >
                 {project.title}
               </motion.h3>
 
               <motion.p
-                className="text-text-secondary mb-4 leading-relaxed"
+                className="text-xs text-primary font-medium mb-3"
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 + 0.1 }}
+                transition={{ duration: 0.6, delay: index * 0.1 + 0.15 }}
                 viewport={{ once: true }}
               >
-                {project.description}
+                {project.impact}
               </motion.p>
 
+              <motion.ul
+                className="text-text-secondary mb-4 space-y-0.5"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 + 0.2 }}
+                viewport={{ once: true }}
+              >
+                {project.features.map((feature, idx) => (
+                  <li key={idx} className="flex items-start">
+                    <span className="text-primary mr-1">•</span>
+                    <span className="text-xs leading-relaxed">{feature}</span>
+                  </li>
+                ))}
+              </motion.ul>
+
               <motion.div
-                className="flex flex-wrap gap-2 mb-4"
+                className="flex flex-wrap gap-1.5 mb-4"
                 variants={containerVariants}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
               >
-                {project.tech.map((tech, techIndex) => (
+                {project.tech.slice(0, 2).map((tech, techIndex) => (
                   <motion.div
                     key={tech}
                     variants={badgeVariants}
@@ -196,35 +231,13 @@ export function Projects() {
                 ))}
               </motion.div>
 
-              <div className="flex gap-3">
-                {project.github && (
-                  <motion.a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center px-4 py-2 bg-secondary text-secondary-foreground rounded-lg hover:bg-secondary/80 transition-all duration-300 shadow-lg hover:shadow-xl"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: index * 0.1 + 0.2 }}
-                    viewport={{ once: true }}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <motion.span
-                      whileHover={{ x: 2 }}
-                      transition={{ type: "spring", stiffness: 400 }}
-                    >
-                      GitHub
-                    </motion.span>
-                  </motion.a>
-                )}
-
+              <div className="flex gap-2 mt-auto">
                 {project.link && project.link !== '#' && (
                   <motion.a
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary-hover transition-all duration-300 shadow-lg hover:shadow-xl group/btn"
+                    className="inline-flex items-center justify-center px-3 py-1.5 bg-primary text-primary-foreground rounded-md hover:bg-primary-hover transition-all duration-300 shadow-md hover:shadow-lg text-xs"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: index * 0.1 + 0.25 }}
@@ -239,7 +252,7 @@ export function Projects() {
                       whileHover={{ x: 3 }}
                       transition={{ type: "spring", stiffness: 400 }}
                     >
-                      Live Demo
+                      View Live System
                     </motion.span>
                     <motion.svg
                       width="16"
@@ -253,6 +266,28 @@ export function Projects() {
                     >
                       <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                     </motion.svg>
+                  </motion.a>
+                )}
+
+                {project.github && (
+                  <motion.a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center px-3 py-1.5 bg-secondary text-secondary-foreground rounded-md hover:bg-secondary/80 transition-all duration-300 shadow-md hover:shadow-lg text-xs"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: index * 0.1 + 0.3 }}
+                    viewport={{ once: true }}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <motion.span
+                      whileHover={{ x: 2 }}
+                      transition={{ type: "spring", stiffness: 400 }}
+                    >
+                      View Source Code
+                    </motion.span>
                   </motion.a>
                 )}
               </div>

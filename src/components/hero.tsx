@@ -72,13 +72,22 @@ export function Hero() {
               </motion.h1>
             </motion.div>
 
+            <motion.div variants={itemVariants} className="mb-6">
+              <Badge
+                variant="secondary"
+                className="text-sm px-4 py-2 bg-emerald-100 text-emerald-800 border-emerald-200 hover:bg-emerald-200 transition-colors"
+              >
+                Available for Freelance Projects
+              </Badge>
+            </motion.div>
+
             <motion.div variants={itemVariants}>
               <motion.h2
                 className="text-xl md:text-2xl lg:text-3xl text-text-secondary mb-8"
                 whileHover={{ scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
-                Full-Stack Developer | MERN Stack | Python Backend
+                I build secure, scalable web applications that solve real business problems
               </motion.h2>
             </motion.div>
 
@@ -118,21 +127,39 @@ export function Hero() {
 
             <motion.div
               variants={itemVariants}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              className="flex flex-col sm:flex-row gap-4"
             >
               <motion.a
-                href="#about"
-                className="inline-flex items-center justify-center px-8 py-4 bg-primary text-primary-foreground rounded-lg hover:bg-primary-hover transition-all duration-300 shadow-lg hover:shadow-xl"
+                href="#contact"
+                className="inline-flex items-center justify-center px-8 py-4 bg-emerald-500 text-white rounded-lg hover:bg-emerald-600 transition-all duration-300 shadow-lg hover:shadow-xl"
                 whileHover={{
-                  boxShadow: "0 20px 25px -5px rgba(59, 130, 246, 0.3), 0 10px 10px -5px rgba(59, 130, 246, 0.2)"
+                  scale: 1.05,
+                  boxShadow: "0 20px 25px -5px rgba(16, 185, 129, 0.3), 0 10px 10px -5px rgba(16, 185, 129, 0.2)"
                 }}
+                whileTap={{ scale: 0.95 }}
               >
                 <motion.span
                   whileHover={{ x: 5 }}
                   transition={{ type: "spring", stiffness: 400 }}
                 >
-                  Explore My Work
+                  Let's Work Together
+                </motion.span>
+              </motion.a>
+
+              <motion.a
+                href="#projects"
+                className="inline-flex items-center justify-center px-8 py-4 bg-secondary text-secondary-foreground rounded-lg hover:bg-secondary/80 transition-all duration-300 shadow-lg hover:shadow-xl"
+                whileHover={{
+                  scale: 1.05,
+                  boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.05)"
+                }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <motion.span
+                  whileHover={{ x: 5 }}
+                  transition={{ type: "spring", stiffness: 400 }}
+                >
+                  View My Work
                 </motion.span>
               </motion.a>
             </motion.div>
