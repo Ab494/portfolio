@@ -54,7 +54,7 @@ export function About() {
         </motion.h2>
 
         <motion.div
-          className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -71,33 +71,6 @@ export function About() {
               I'm a Full-Stack Developer specializing in the MERN Stack (MongoDB, Express.js, React.js, Node.js) and Python backend development (Django, DRF, Flask). I build secure, efficient, and scalable web applications with a focus on clean code, solid architecture, and user-centered design.
             </motion.p>
 
-            <motion.div
-              className="bg-card p-6 rounded-lg border border-border hover:border-primary/50 transition-colors"
-              variants={cardVariants}
-              whileHover={{
-                scale: 1.02,
-                boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
-              }}
-            >
-              <motion.h3
-                className="text-xl font-semibold mb-3 text-primary"
-                variants={textVariants}
-              >
-                Current Journey
-              </motion.h3>
-              <motion.p
-                className="text-text-secondary"
-                variants={textVariants}
-              >
-                Pursuing a Diploma in <span className="text-primary font-medium">Information Communication Technology</span> at Eldoret National Polytechnic, currently expanding my software engineering skills through <span className="text-primary font-medium">PLP Academy</span>.
-              </motion.p>
-            </motion.div>
-          </motion.div>
-
-          <motion.div
-            className="space-y-6"
-            variants={cardVariants}
-          >
             <motion.div
               className="bg-card p-6 rounded-lg border border-border hover:border-primary/50 transition-colors"
               variants={cardVariants}
