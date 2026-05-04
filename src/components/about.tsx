@@ -68,7 +68,7 @@ export function About() {
               className="text-lg text-text-secondary leading-relaxed"
               variants={textVariants}
             >
-              I'm a Full-Stack Developer specializing in the MERN Stack (MongoDB, Express.js, React.js, Node.js) and Python backend development (Django, DRF, Flask). I build secure, efficient, and scalable web applications with a focus on clean code, solid architecture, and user-centered design.
+              I'm a Full-Stack Developer specializing in the MERN Stack (MongoDB, Express.js, React.js, Node.js) and Python backend development (Django, DRF, Flask). I build secure, efficient, and scalable web applications with a focus on clean code, solid architecture, and user-centered design. I also run <strong>TechBridge Africa</strong>, an ed-tech initiative that equips the next generation of African developers with practical, industry-ready skills.
             </motion.p>
 
             <motion.div
@@ -93,8 +93,9 @@ export function About() {
                   "Full-stack web development",
                   "Database design & management",
                   "API development & integration",
+                  "DevOps — Docker, CI/CD, Terraform",
                   "System architecture",
-                  "Continuous learning"
+                  "Tech education & mentorship (TechBridge Africa)"
                 ].map((item, index) => (
                   <motion.li
                     key={item}

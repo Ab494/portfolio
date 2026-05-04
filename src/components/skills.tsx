@@ -5,7 +5,9 @@ import { motion } from 'framer-motion'
 const skillsData = {
   frontend: [
     'JavaScript (ES6+)',
+    'TypeScript',
     'React.js',
+    'Next.js 14',
     'HTML5 & CSS3',
     'Tailwind CSS'
   ],
@@ -24,12 +26,16 @@ const skillsData = {
   ],
   tools: [
     'Git & GitHub',
+    'Docker & Docker Compose',
+    'GitHub Actions (CI/CD)',
+    'Terraform (IaC)',
     'Linux',
     'Bash Scripting',
     'Postman / Thunder Client',
     'Render, Vercel, Railway, Netlify',
     'REST API Development',
     'Nginx',
+    'Winston (Structured Logging)',
     'VS Code'
   ]
 }
@@ -46,12 +52,23 @@ const specializationData = {
     ]
   },
   secondary: {
-    title: 'Python Backend Development (Secondary)',
+    title: 'Python Backend Development',
     items: [
       'Django REST Framework APIs',
-      'Automation scripts',
+      'Celery & Redis task queues',
+      'WebSocket real-time features (Django Channels)',
       'Authentication systems',
       'System tools and utilities'
+    ]
+  },
+  devops: {
+    title: 'DevOps & Infrastructure',
+    items: [
+      'Docker containerisation & Compose',
+      'GitHub Actions CI/CD pipelines',
+      'Terraform Infrastructure as Code',
+      'Render & cloud deployments',
+      'Structured logging, health checks & uptime monitoring'
     ]
   }
 }
@@ -179,7 +196,7 @@ export function Skills() {
         </motion.h3>
 
         <motion.div
-          className="grid grid-cols-1 lg:grid-cols-2 gap-8"
+          className="grid grid-cols-1 lg:grid-cols-3 gap-8"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
