@@ -195,7 +195,7 @@ export function Contact() {
                     }}
                     transition={{ duration: 0.2 }}
                   >
-                    <span className="text-primary text-lg">📱</span>
+                    <span className="text-primary text-lg"></span>
                   </motion.div>
                   <div>
                     <p className="font-semibold text-lg text-foreground">Phone</p>
@@ -217,11 +217,11 @@ export function Contact() {
                     }}
                     transition={{ duration: 0.2 }}
                   >
-                    <span className="text-primary text-lg">📍</span>
+                    <span className="text-primary text-lg"></span>
                   </motion.div>
                   <div>
                     <p className="font-semibold text-lg text-foreground">Location</p>
-                    <p className="text-text-secondary text-base">Eldoret, Kenya (Remote Work Available)</p>
+                    <p className="text-text-secondary text-base">Nairobi, Kenya (Remote Work Available)</p>
                   </div>
                 </motion.div>
 
