@@ -49,7 +49,36 @@ const projects = [
     image: '/images/ecommerce.png',
     featured: false
   },
- 
+  {
+    title: 'Roommate Finder',
+    impact: 'Full-stack rental matching platform — TechBridge Africa teaching reference',
+    features: [
+      'Weighted matching algorithm',
+      'Real-time WebSocket chat via Django Channels',
+      "Geo-filtering & SMS via Africa's Talking",
+      'JWT auth, Cloudinary, Celery + Redis'
+    ],
+    tech: ['Django', 'DRF', 'Next.js 14', 'PostgreSQL', 'Redis', 'Celery'],
+    link: '#',
+    github: '#',
+    image: '/images/lms.png',
+    featured: false
+  },
+  {
+    title: 'SMS Hub Pro',
+    impact: 'Production SMS platform with end-to-end DevOps pipeline',
+    features: [
+      'GitHub Actions CI/CD pipeline',
+      'Docker containerisation & Compose',
+      'Terraform Infrastructure as Code',
+      'Winston structured logging & UptimeRobot monitoring'
+    ],
+    tech: ['Node.js', 'Express.js', 'Docker', 'GitHub Actions', 'Terraform', 'Render'],
+    link: '#',
+    github: '#',
+    image: '/images/sms-hub.png',
+    featured: false
+  },
 ]
 
 const containerVariants = {
