@@ -74,8 +74,8 @@ const projects = [
       'Winston structured logging & UptimeRobot monitoring'
     ],
     tech: ['Node.js', 'Express.js', 'Docker', 'GitHub Actions', 'Terraform', 'Render'],
-    link: '#',
-    github: '#',
+    link: 'https://254convexcomltd.africa/',
+    github: 'https://github.com/Ab494/sms-hub-pro.git',
     image: '/images/sms-hub.png',
     featured: false
   },
