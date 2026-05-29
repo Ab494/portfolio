@@ -79,6 +79,25 @@ const projects = [
     image: '/images/sms-hub.png',
     featured: false
   },
+
+  {
+    title: 'School Dashboard',
+    impact: 'A full-stack school management dashboard built with modern web technologies and integrated DevOps workflows. The project includes automated deployment pipelines, containerized services, and scalable application architecture focused on real-world administrative management systems',
+    features: [
+      'Dockerized application setup',
+      'CI/CD automation with GitHub Actions',
+      'Automated deployment workflows',
+      'Environment variable management',
+      'Linux/Nginx server configuration',
+      'Production-ready deployment structure',
+      'Version control using Git & GitHub',
+    ],
+    tech: ['Django', 'Python', 'PostgreSQL'],
+    link: 'https://school-dashboard-lqng.onrender.com/',
+    github: 'https://github.com/Ab494/school-dashboard.git',
+    image: '',
+    featured: true
+  }
 ]
 
 const containerVariants = {
