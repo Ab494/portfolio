@@ -51,7 +51,7 @@ const projects = [
   },
   {
     title: 'Roommate Finder',
-    impact: 'Full-stack rental matching platform — TechBridge Africa teaching reference',
+    impact: 'A full-stack Django backend for finding compatible roommates through preference-based matching, real-time chat, and SMS notifications.',
     features: [
       'Weighted matching algorithm',
       'Real-time WebSocket chat via Django Channels',
