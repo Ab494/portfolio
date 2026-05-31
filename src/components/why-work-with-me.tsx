@@ -3,23 +3,29 @@
 import { motion } from 'framer-motion'
 import { Zap, MessageCircle, Code } from 'lucide-react'
 
+
 const reasons = [
   {
-    title: 'Fast Delivery',
-    description: 'Quick turnaround without compromising quality. Regular updates throughout the project.',
-    icon: Zap
+    title: 'Full-Stack Engineering',
+    description:
+      'Building robust applications from frontend interfaces to backend services, databases, and APIs using modern technologies and best practices.',
+    icon: Code,
   },
   {
-    title: 'Clear Communication',
-    description: 'I keep you informed at every step. No technical jargon, just clear progress updates.',
-    icon: MessageCircle
+    title: 'DevOps & Automation',
+    description:
+      'Automating deployments, infrastructure, and development workflows using Docker, CI/CD pipelines, Terraform, and cloud-native practices.',
+    icon: Zap,
   },
   {
-    title: 'Clean, Scalable Code',
-    description: 'Well-documented code that\'s easy to maintain and scale as your business grows.',
-    icon: Code
-  }
+    title: 'Scalable Architecture',
+    description:
+      'Designing secure, maintainable, and production-ready systems that remain reliable as products, teams, and user bases grow.',
+    icon: MessageCircle,
+  },
 ]
+
+
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -49,26 +55,19 @@ export function WhyWorkWithMe() {
   return (
     <section id="why-work-with-me" className="py-20 px-4 bg-card/30">
       <div className="max-w-6xl mx-auto">
-        <motion.h2
-          className="text-3xl md:text-4xl font-bold text-center mb-4 bg-gradient-to-r from-primary to-primary-hover bg-clip-text text-transparent"
-          initial={{ opacity: 0, y: 30, scale: 0.9 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          viewport={{ once: true }}
-          whileHover={{ scale: 1.05 }}
-        >
-          Why Work With Me
-        </motion.h2>
+        
+    <motion.h2
+      className="text-3xl md:text-4xl font-bold text-center mb-4 bg-gradient-to-r from-primary to-primary-hover bg-clip-text text-transparent"
+    >
+     What I Bring To Teams
+    </motion.h2>
 
-        <motion.p
-          className="text-lg text-text-secondary text-center mb-16 max-w-2xl mx-auto"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-          viewport={{ once: true }}
-        >
-          Partner with a developer who prioritizes your success and delivers exceptional results
-        </motion.p>
+    <motion.p
+      className="text-lg text-text-secondary text-center mb-16 max-w-3xl mx-auto"
+     >
+      Combining software engineering expertise with DevOps practices to build,
+      deploy, and maintain reliable systems that scale.
+    </motion.p>
 
         <motion.div
           className="grid grid-cols-1 md:grid-cols-3 gap-8"
