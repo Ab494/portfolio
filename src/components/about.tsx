@@ -33,7 +33,7 @@ const textVariants = {
     y: 0,
     transition: {
       duration: 0.6,
-      ease: "easeOut",
+      ease: 'easeOut',
     }
   }
 }
@@ -46,7 +46,7 @@ export function About() {
           className="text-3xl md:text-4xl font-bold text-center mb-16 bg-gradient-to-r from-primary to-primary-hover bg-clip-text text-transparent"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
           viewport={{ once: true }}
           whileHover={{ scale: 1.05 }}
         >
@@ -58,7 +58,7 @@ export function About() {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: '-100px' }}
         >
           <motion.div
             className="space-y-6"
@@ -68,7 +68,22 @@ export function About() {
               className="text-lg text-text-secondary leading-relaxed"
               variants={textVariants}
             >
-              I'm a Full-Stack Developer specializing in the MERN Stack (MongoDB, Express.js, React.js, Node.js) and Python backend development (Django, DRF, Flask). I build secure, efficient, and scalable web applications with a focus on clean code, solid architecture, and user-centered design. I also run <strong>TechBridge Africa</strong>, an ed-tech initiative that equips the next generation of African developers with practical, industry-ready skills.
+              I'm a Software Engineer and DevOps Engineer passionate about
+              building, deploying, and maintaining scalable digital products.
+              My expertise spans full-stack development with React, Node.js,
+              Python, Django, and modern cloud-native technologies.
+            </motion.p>
+
+            <motion.p
+              className="text-lg text-text-secondary leading-relaxed"
+              variants={textVariants}
+            >
+              I design secure, efficient, and maintainable systems, leveraging
+              Docker, CI/CD pipelines, Infrastructure as Code (Terraform),
+              PostgreSQL, Redis, and Linux-based environments to deliver
+              reliable production-ready applications. My focus is on clean
+              code, scalable architecture, automation, and operational
+              excellence.
             </motion.p>
 
             <motion.div
@@ -76,37 +91,44 @@ export function About() {
               variants={cardVariants}
               whileHover={{
                 scale: 1.02,
-                boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
+                boxShadow:
+                  '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)'
               }}
             >
               <motion.h3
-                className="text-xl font-semibold mb-3 text-primary"
+                className="text-xl font-semibold mb-4 text-primary"
                 variants={textVariants}
               >
                 What I Do
               </motion.h3>
+
               <motion.ul
-                className="space-y-2 text-text-secondary"
+                className="space-y-3 text-text-secondary"
                 variants={containerVariants}
               >
                 {[
-                  "Full-stack web development",
-                  "Database design & management",
-                  "API development & integration",
-                  "DevOps — Docker, CI/CD, Terraform",
-                  "System architecture",
-                  "Tech education & mentorship (TechBridge Africa)"
+                  'Full-Stack Application Development',
+                  'Cloud & DevOps Engineering',
+                  'Docker & Containerization',
+                  'CI/CD Pipeline Automation',
+                  'Infrastructure as Code (Terraform)',
+                  'Backend Systems & API Development',
+                  'System Architecture & Scalability',
+                  'Technical Mentorship (TechBridge Africa)',
                 ].map((item, index) => (
                   <motion.li
                     key={item}
                     variants={textVariants}
-                    className="flex items-center gap-2"
+                    className="flex items-center gap-3"
                   >
                     <motion.div
                       className="w-2 h-2 bg-primary rounded-full"
                       initial={{ scale: 0 }}
                       whileInView={{ scale: 1 }}
-                      transition={{ delay: index * 0.1, duration: 0.3 }}
+                      transition={{
+                        delay: index * 0.1,
+                        duration: 0.3
+                      }}
                       viewport={{ once: true }}
                     />
                     {item}
@@ -120,7 +142,8 @@ export function About() {
               variants={cardVariants}
               whileHover={{
                 scale: 1.02,
-                boxShadow: "0 20px 25px -5px rgba(59, 130, 246, 0.1), 0 10px 10px -5px rgba(59, 130, 246, 0.04)"
+                boxShadow:
+                  '0 20px 25px -5px rgba(59, 130, 246, 0.1), 0 10px 10px -5px rgba(59, 130, 246, 0.04)'
               }}
             >
               <motion.h3
@@ -129,11 +152,14 @@ export function About() {
               >
                 Philosophy
               </motion.h3>
+
               <motion.p
                 className="text-text-secondary italic leading-relaxed"
                 variants={textVariants}
               >
-                "Great software is built on strong foundations. I believe in writing code that not only works today but scales for tomorrow."
+                "Building software is only half the job. Great engineering
+                ensures systems are scalable, reliable, secure, and
+                maintainable long after deployment."
               </motion.p>
             </motion.div>
           </motion.div>
