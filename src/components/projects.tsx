@@ -56,7 +56,11 @@ const projects = [
       'Weighted matching algorithm',
       'Real-time WebSocket chat via Django Channels',
       "Geo-filtering & SMS via Africa's Talking",
-      'JWT auth, Cloudinary, Celery + Redis'
+      'JWT auth, Cloudinary, Celery + Redis',
+      'GitHub Actions CI/CD pipeline',
+      'Docker containerisation & Compose',
+      'Terraform Infrastructure as Code',
+      'Winston structured logging & UptimeRobot monitoring'
     ],
     tech: ['Django', 'DRF', 'Next.js 14', 'PostgreSQL', 'Redis', 'Celery'],
     link: '#',
