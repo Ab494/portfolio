@@ -95,7 +95,7 @@ const projects = [
     tech: ['Django', 'Python', 'PostgreSQL'],
     link: 'https://school-dashboard-lqng.onrender.com/',
     github: 'https://github.com/Ab494/school-dashboard.git',
-    image: '',
+    image: '/images/school.png',
     featured: true
   }
 ]
