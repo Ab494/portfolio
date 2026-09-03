@@ -29,15 +29,6 @@ export function ServiceWorkerRegistration() {
           })
       })
     }
-
-    // Request notification permission
-    if ('Notification' in window && 'serviceWorker' in navigator) {
-      Notification.requestPermission().then((permission) => {
-        if (permission === 'granted') {
-          console.log('Notification permission granted')
-        }
-      })
-    }
   }, [])
 
   const showUpdatePrompt = () => {
