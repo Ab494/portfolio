@@ -35,7 +35,7 @@ export function Mentorship() {
               Kiprotich Mibei Amos
             </span>
             , a Senior Infrastructure Engineer. His guidance has shaped how I
-            approach backend systems and DevOps — not just the code, but how
+            approach backend systems and DevOps not just the code, but how
             you think about reliability, monitoring, and keeping things
             running in production. Having someone who's been through it
             challenge your assumptions makes a real difference.
