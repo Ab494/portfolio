@@ -51,7 +51,7 @@ export function About() {
             variants={itemVariants}
           >
             I'm a backend developer based in Nairobi. Most of my work is in
-            Django and Python — building APIs, fixing production bugs, and
+            Django and Python building APIs, fixing production bugs, and
             keeping services running. I also work with Laravel and Next.js
             when the project calls for it.
           </motion.p>
