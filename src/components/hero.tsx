@@ -97,7 +97,7 @@ export function Hero() {
               variants={itemVariants}
             >
               I build and maintain backend systems with Django, Laravel, and
-              Next.js. I handle deployment too — Docker, CI/CD pipelines,
+              Next.js. I handle deployment too Docker, CI/CD pipelines,
               and VPS/cPanel setups. Most of my work involves fixing real
               production issues, integrating payment APIs, and keeping
               services running reliably.
