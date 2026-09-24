@@ -100,11 +100,11 @@ export function Contact() {
                 </div>
                 <div>
                   <p className="text-sm font-medium text-foreground">Phone</p>
-                  <p className="text-text-secondary text-sm">+254 711 546 105</p>
+                  <p className="text-text-secondary text-sm">+254 741 220 644</p>
                 </div>
                 <div>
                   <p className="text-sm font-medium text-foreground">Location</p>
-                  <p className="text-text-secondary text-sm">Nairobi, Kenya — remote work welcome</p>
+                  <p className="text-text-secondary text-sm">Nairobi, Kenya remote work welcome</p>
                 </div>
               </div>
             </div>
