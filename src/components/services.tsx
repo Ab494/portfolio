@@ -6,7 +6,7 @@ import { Globe, Server, Shield, Database } from 'lucide-react'
 const services = [
   {
     title: 'Web Applications',
-    description: 'Full-stack apps built with Django, Laravel, or Next.js — from auth flows to deployment.',
+    description: 'Full-stack apps built with Django, Laravel, or Next.js from auth flows to deployment.',
     icon: Globe
   },
   {
