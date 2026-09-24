@@ -6,7 +6,7 @@ const reasons = [
   {
     title: 'I fix things that are broken in production',
     description:
-      'Reversal bugs in a Django POS system, SMS delivery failures via Africa\'s Talking, M-Pesa callback URLs that weren\'t firing — I\'ve tracked down and fixed these in live systems.',
+      'Reversal bugs in a Django POS system, SMS delivery failures via Africa\'s Talking, M-Pesa callback URLs that weren\'t firing I\'ve tracked down and fixed these in live systems.',
   },
   {
     title: 'I handle deployment, not just the code',
@@ -64,7 +64,7 @@ export function WhyWorkWithMe() {
           transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
           viewport={{ once: true }}
         >
-          Not a list of buzzwords — here's what I actually do when I join a project.
+          Not a list of buzzwords here's what I actually do when I join a project.
         </motion.p>
 
         <motion.div
