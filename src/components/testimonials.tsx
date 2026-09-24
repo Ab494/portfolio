@@ -16,47 +16,45 @@ const containerVariants = {
     opacity: 1,
     transition: {
       staggerChildren: 0.2,
-      delayChildren: 0.3,
+      delayChildren: 0.2,
     }
   }
 }
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 50, scale: 0.9 },
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
-    scale: 1,
     transition: {
-      duration: 0.8,
-      ease: [0.6, -0.05, 0.01, 0.99],
+      duration: 0.5,
+      ease: 'easeOut',
     }
   }
 }
 
 export function Testimonials() {
   return (
-    <section id="testimonials" className="py-20 px-4 bg-background">
-      <div className="max-w-4xl mx-auto">
+    <section id="testimonials" className="py-20 px-4">
+      <div className="max-w-3xl mx-auto">
         <motion.h2
-          className="text-3xl md:text-4xl font-bold text-center mb-4 bg-gradient-to-r from-primary to-primary-hover bg-clip-text text-transparent"
-          initial={{ opacity: 0, y: 30, scale: 0.9 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-3xl md:text-4xl font-serif font-semibold text-center mb-3 text-foreground"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
           viewport={{ once: true }}
-          whileHover={{ scale: 1.05 }}
         >
-          What Clients Say
+          What clients say
         </motion.h2>
 
         <motion.p
-          className="text-lg text-text-secondary text-center mb-16 max-w-2xl mx-auto"
-          initial={{ opacity: 0, y: 20 }}
+          className="text-base text-text-secondary text-center mb-10 max-w-xl mx-auto"
+          initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+          transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
           viewport={{ once: true }}
         >
-          Real feedback from projects I've delivered. More testimonials coming soon!
+          More testimonials coming soon.
         </motion.p>
 
         <motion.div
@@ -64,51 +62,25 @@ export function Testimonials() {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: "-80px" }}
         >
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={index}
-              className="bg-card p-8 rounded-lg border border-border hover:border-primary/50 transition-all duration-300 max-w-2xl text-center relative"
+              className="max-w-2xl text-center relative pt-8"
               variants={cardVariants}
-              whileHover={{
-                scale: 1.05,
-                y: -10,
-                boxShadow: "0 25px 50px -12px rgba(59, 130, 246, 0.25)",
-                transition: { duration: 0.3 }
-              }}
-              whileTap={{ scale: 0.98 }}
             >
-              <motion.div
-                className="absolute -top-4 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center"
-                whileHover={{
-                  scale: 1.2,
-                  rotate: 10
-                }}
-                transition={{ duration: 0.2 }}
-              >
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-8 bg-secondary border border-border rounded-md flex items-center justify-center">
                 <Quote className="w-4 h-4 text-primary" />
-              </motion.div>
+              </div>
 
-              <motion.blockquote
-                className="text-lg text-text-secondary italic mb-6 leading-relaxed pt-4"
-                initial={{ opacity: 0, y: -20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                viewport={{ once: true }}
-              >
+              <blockquote className="text-lg text-text-secondary italic mb-5 leading-relaxed">
                 "{testimonial.quote}"
-              </motion.blockquote>
+              </blockquote>
 
-              <motion.cite
-                className="text-primary font-semibold text-base"
-                initial={{ opacity: 0, y: -20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                viewport={{ once: true }}
-              >
+              <cite className="text-primary font-medium text-sm not-italic">
                 — {testimonial.author}
-              </motion.cite>
+              </cite>
             </motion.div>
           ))}
         </motion.div>

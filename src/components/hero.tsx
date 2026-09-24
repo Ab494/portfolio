@@ -1,4 +1,3 @@
-
 'use client'
 
 import { motion } from 'framer-motion'
@@ -7,12 +6,12 @@ import { Badge } from './ui/badge'
 const techStack = [
   'Python',
   'Django',
-  'React',
+  'Laravel',
+  'Next.js',
   'Docker',
-  'Terraform',
-  'GitHub Actions',
   'PostgreSQL',
-  'Redis',
+  'GitHub Actions',
+  'Terraform',
 ]
 
 const containerVariants = {
@@ -20,31 +19,31 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2,
-      delayChildren: 0.3,
+      staggerChildren: 0.15,
+      delayChildren: 0.2,
     },
   },
 }
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.8,
+      duration: 0.6,
       ease: [0.6, -0.05, 0.01, 0.99],
     },
   },
 }
 
 const badgeVariants = {
-  hidden: { opacity: 0, scale: 0.8 },
+  hidden: { opacity: 0, scale: 0.95 },
   visible: {
     opacity: 1,
     scale: 1,
     transition: {
-      duration: 0.5,
+      duration: 0.4,
       ease: 'easeOut',
     },
   },
@@ -54,10 +53,10 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="min-h-screen flex items-center justify-center px-4 pt-32 pb-8 bg-gradient-to-br from-background via-background to-card/20"
+      className="min-h-screen flex items-center justify-center px-4 pt-32 pb-8"
     >
       <motion.div
-        className="max-w-7xl mx-auto"
+        className="max-w-6xl mx-auto"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -70,70 +69,52 @@ export function Hero() {
           >
             <motion.div variants={itemVariants}>
               <motion.h1
-                className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 bg-gradient-to-r from-primary to-primary-hover bg-clip-text text-transparent"
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: 'spring', stiffness: 300 }}
+                className="text-4xl md:text-5xl lg:text-6xl font-serif font-semibold mb-4 text-foreground leading-tight"
+                variants={itemVariants}
               >
                 Evans Kipngeno Cheruiyot
               </motion.h1>
             </motion.div>
 
-            <motion.h3
-              className="text-lg md:text-xl font-medium text-primary mb-6"
+            <motion.p
+              className="text-lg text-primary mb-6 font-medium"
               variants={itemVariants}
             >
-              Software Engineer & DevOps Engineer
-            </motion.h3>
+              Backend Developer & DevOps Engineer
+            </motion.p>
 
             <motion.div variants={itemVariants} className="mb-6">
               <Badge
-                variant="secondary"
-                className="text-sm px-4 py-2 bg-emerald-100 text-emerald-800 border-emerald-200 hover:bg-emerald-200 transition-colors"
+                variant="outline"
+                className="text-sm px-3 py-1 border-border text-muted-foreground"
               >
-                Building Production-Ready Software Systems
+                Available for work
               </Badge>
             </motion.div>
 
-            <motion.div variants={itemVariants}>
-              <motion.h2
-                className="text-xl md:text-2xl lg:text-3xl text-text-secondary mb-8"
-                whileHover={{ scale: 1.02 }}
-                transition={{ type: 'spring', stiffness: 300 }}
-              >
-                Designing, Building & Automating Scalable Software Systems
-              </motion.h2>
-            </motion.div>
-
-            <motion.div variants={itemVariants}>
-              <motion.p
-                className="text-lg md:text-xl text-text-secondary mb-12 max-w-2xl mx-auto lg:mx-0 leading-relaxed"
-                whileHover={{ scale: 1.01 }}
-                transition={{ type: 'spring', stiffness: 300 }}
-              >
-                Software Engineer specializing in full-stack development,
-                cloud infrastructure, CI/CD automation, and DevOps practices.
-                I build production-ready applications with a focus on
-                scalability, reliability, security, and performance.
-              </motion.p>
-            </motion.div>
+            <motion.p
+              className="text-base md:text-lg text-text-secondary mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed"
+              variants={itemVariants}
+            >
+              I build and maintain backend systems with Django, Laravel, and
+              Next.js. I handle deployment too — Docker, CI/CD pipelines,
+              and VPS/cPanel setups. Most of my work involves fixing real
+              production issues, integrating payment APIs, and keeping
+              services running reliably.
+            </motion.p>
 
             <motion.div
-              className="flex flex-wrap justify-center lg:justify-start gap-3 mb-12"
+              className="flex flex-wrap justify-center lg:justify-start gap-2 mb-8"
               variants={itemVariants}
             >
               {techStack.map((tech) => (
                 <motion.div
                   key={tech}
                   variants={badgeVariants}
-                  whileHover={{
-                    scale: 1.1,
-                    transition: { duration: 0.2 },
-                  }}
-                  whileTap={{ scale: 0.95 }}
                 >
                   <Badge
                     variant="secondary"
-                    className="text-sm px-3 py-1 border-border hover:border-primary transition-colors"
+                    className="text-sm px-3 py-1"
                   >
                     {tech}
                   </Badge>
@@ -143,49 +124,30 @@ export function Hero() {
 
             <motion.div
               variants={itemVariants}
-              className="flex flex-col sm:flex-row gap-4"
+              className="flex flex-col sm:flex-row gap-3"
             >
-              <motion.a
+              <a
                 href="#contact"
-                className="inline-flex items-center justify-center px-8 py-4 bg-emerald-500 text-white rounded-lg hover:bg-emerald-600 transition-all duration-300 shadow-lg hover:shadow-xl"
-                whileHover={{
-                  scale: 1.05,
-                  boxShadow:
-                    '0 20px 25px -5px rgba(16, 185, 129, 0.3), 0 10px 10px -5px rgba(16, 185, 129, 0.2)',
-                }}
-                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center justify-center px-6 py-3 bg-primary text-primary-foreground rounded-md hover:bg-primary-hover transition-colors font-medium"
               >
-                <motion.span
-                  whileHover={{ x: 5 }}
-                  transition={{ type: 'spring', stiffness: 400 }}
-                >
-                  Let's Work Together
-                </motion.span>
-              </motion.a>
+                Get in touch
+              </a>
 
-              <motion.a
+              <a
                 href="#projects"
-                className="inline-flex items-center justify-center px-8 py-4 bg-secondary text-secondary-foreground rounded-lg hover:bg-secondary/80 transition-all duration-300 shadow-lg hover:shadow-xl"
-                whileHover={{
-                  scale: 1.05,
-                  boxShadow:
-                    '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.05)',
-                }}
-                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center justify-center px-6 py-3 border border-border text-foreground rounded-md hover:border-primary hover:text-primary transition-colors font-medium"
               >
-                View My Work
-              </motion.a>
+                See my work
+              </a>
 
-              <motion.a
+              <a
                 href="/Evans-Kipngeno-Resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-8 py-4 border border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-all duration-300 shadow-lg hover:shadow-xl"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center justify-center px-6 py-3 text-muted-foreground hover:text-primary transition-colors font-medium"
               >
-                Download Resume
-              </motion.a>
+                Download resume
+              </a>
             </motion.div>
           </motion.div>
 
@@ -195,81 +157,16 @@ export function Hero() {
             variants={itemVariants}
           >
             <div className="relative">
-              <motion.div
-                className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary/20 shadow-2xl"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.3 }}
-              >
+              <div className="w-56 h-56 md:w-72 md:h-72 rounded-full overflow-hidden border border-border">
                 <img
                   src="/vanso.jpeg"
-                  alt="Evans Kipngeno Cheruiyot - Software Engineer and DevOps Engineer"
+                  alt="Evans Kipngeno Cheruiyot"
                   className="w-full h-full object-cover"
                 />
-              </motion.div>
-
-              <motion.div
-                className="absolute -top-4 -right-4 w-8 h-8 bg-primary rounded-full"
-                animate={{
-                  scale: [1, 1.2, 1],
-                  rotate: [0, 180, 360],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: 'easeInOut',
-                }}
-              />
-
-              <motion.div
-                className="absolute -bottom-4 -left-4 w-6 h-6 bg-primary/60 rounded-full"
-                animate={{
-                  scale: [1, 1.3, 1],
-                  rotate: [360, 180, 0],
-                }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: 'easeInOut',
-                  delay: 1,
-                }}
-              />
+              </div>
             </div>
           </motion.div>
         </div>
-
-        {/* Scroll Indicator */}
-        <motion.div
-          className="mt-16"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2, duration: 1 }}
-        >
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: 'easeInOut',
-            }}
-            className="text-text-secondary"
-          >
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              className="mx-auto"
-            >
-              <path
-                d="M7 13L12 18L17 13M12 18V6"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </motion.div>
-        </motion.div>
       </motion.div>
     </section>
   )

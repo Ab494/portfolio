@@ -2,25 +2,12 @@
 
 import { motion, AnimatePresence } from 'framer-motion'
 import React, { useState, useEffect, useRef } from 'react'
-import { 
-  Menu, 
-  X, 
-  Home, 
-  User, 
-  Code2, 
-  FolderKanban, 
-  GraduationCap, 
-  Heart, 
-  Github, 
-  Mail,
-  Download,
-  LucideIcon
-} from 'lucide-react'
+import { Menu, X, Home, User, Code2, FolderKanban, GraduationCap, Heart, Github, Mail, Download, Video as LucideIcon } from 'lucide-react'
 
 interface NavItem {
   href: string
   label: string
-  icon: LucideIcon
+  icon: typeof LucideIcon
 }
 
 const navSections: { main: NavItem[], secondary: NavItem[], social: NavItem[] } = {
@@ -74,19 +61,19 @@ export function Navigation(): React.ReactNode {
     return (
       <a
         href={item.href}
-        className={`relative flex items-center justify-center w-12 h-12 rounded-xl transition-colors duration-200 ${
+        className={`relative flex items-center justify-center w-11 h-11 rounded-md transition-colors duration-200 ${
           isActive
-            ? 'bg-primary text-white'
-            : 'text-text-secondary hover:text-primary hover:bg-primary/10'
+            ? 'bg-primary text-primary-foreground'
+            : 'text-muted-foreground hover:text-primary hover:bg-secondary'
         }`}
         onMouseEnter={() => setHoveredItem(item.href)}
         onMouseLeave={() => setHoveredItem(null)}
         title={item.label}
       >
-        <Icon size={20} />
+        <Icon size={19} />
         {hoveredItem === item.href && !isActive && (
           <div 
-            className="absolute left-full ml-3 px-3 py-1.5 bg-card border border-border rounded-lg shadow-lg whitespace-nowrap z-50"
+            className="absolute left-full ml-3 px-3 py-1.5 bg-background border border-border rounded-md whitespace-nowrap z-50 shadow-sm"
             style={{ pointerEvents: 'none' }}
           >
             <span className="text-sm font-medium text-foreground">{item.label}</span>
@@ -99,13 +86,12 @@ export function Navigation(): React.ReactNode {
   const Sidebar = () => (
     <div
       ref={sidebarRef}
-      className="fixed left-0 top-0 h-full w-20 bg-card/95 backdrop-blur-xl border-r border-border/50 z-50 hidden md:flex flex-col items-center py-6"
+      className="fixed left-0 top-0 h-full w-16 bg-background border-r border-border z-50 hidden md:flex flex-col items-center py-6"
       onMouseLeave={() => setHoveredItem(null)}
     >
-      {/* Profile Image - GitHub style */}
-      <div className="mb-8">
+      <div className="mb-6">
         <a href="#hero" className="block">
-          <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-primary/30 shadow-lg">
+          <div className="w-11 h-11 rounded-full overflow-hidden border border-border">
             <img 
               src="/vanso.jpeg" 
               alt="Evans Kipngeno" 
@@ -115,7 +101,7 @@ export function Navigation(): React.ReactNode {
         </a>
       </div>
 
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-1.5">
         {navSections.main.map((item) => (
           <NavItem 
             key={item.href} 
@@ -125,9 +111,9 @@ export function Navigation(): React.ReactNode {
         ))}
       </div>
 
-      <div className="w-8 h-px bg-border/50 my-4" />
+      <div className="w-7 h-px bg-border my-3" />
 
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-1.5">
         {navSections.secondary.map((item) => (
           <NavItem 
             key={item.href} 
@@ -137,9 +123,9 @@ export function Navigation(): React.ReactNode {
         ))}
       </div>
 
-      <div className="w-8 h-px bg-border/50 my-4" />
+      <div className="w-7 h-px bg-border my-3" />
 
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-1.5">
         {navSections.social.map((item) => (
           <NavItem 
             key={item.href} 
@@ -153,16 +139,16 @@ export function Navigation(): React.ReactNode {
         <a
           href="/cv.pdf"
           download
-          className="flex items-center justify-center w-12 h-12 rounded-xl bg-secondary text-text-secondary hover:text-primary hover:bg-secondary/80 transition-colors duration-200 border border-border/50"
+          className="flex items-center justify-center w-11 h-11 rounded-md bg-secondary text-muted-foreground hover:text-primary hover:border-primary border border-border transition-colors duration-200"
           onMouseEnter={() => setHoveredItem('download')}
           onMouseLeave={() => setHoveredItem(null)}
           title="Download CV"
         >
-          <Download size={18} />
+          <Download size={17} />
         </a>
         {hoveredItem === 'download' && (
           <div 
-            className="absolute left-full ml-3 px-3 py-1.5 bg-card border border-border rounded-lg shadow-lg whitespace-nowrap z-50"
+            className="absolute left-full ml-3 px-3 py-1.5 bg-background border border-border rounded-md whitespace-nowrap z-50 shadow-sm"
             style={{ pointerEvents: 'none' }}
           >
             <span className="text-sm font-medium text-foreground">Download CV</span>
@@ -174,21 +160,21 @@ export function Navigation(): React.ReactNode {
 
   const MobileHeader = () => (
     <motion.div
-      className="fixed top-0 left-0 right-0 z-50 bg-card/95 backdrop-blur-xl border-b border-border/50 md:hidden"
+      className="fixed top-0 left-0 right-0 z-50 bg-background border-b border-border md:hidden"
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
     >
       <div className="flex items-center justify-between px-4 py-3">
         <a href="#hero" className="flex items-center gap-2">
-          <div className="w-9 h-9 rounded-full overflow-hidden border border-primary/30 shadow-md">
+          <div className="w-8 h-8 rounded-full overflow-hidden border border-border">
             <img 
               src="/vanso.jpeg" 
               alt="Evans Kipngeno" 
               className="w-full h-full object-cover"
             />
           </div>
-          <span className="text-lg font-bold bg-gradient-to-r from-primary to-primary-hover bg-clip-text text-transparent">
+          <span className="text-base font-semibold font-serif text-foreground">
             Evans
           </span>
         </a>
@@ -197,18 +183,18 @@ export function Navigation(): React.ReactNode {
           <a
             href="/cv.pdf"
             download
-            className="p-2 text-text-secondary hover:text-primary transition-colors"
+            className="p-2 text-muted-foreground hover:text-primary transition-colors"
             title="Download CV"
           >
-            <Download size={20} />
+            <Download size={19} />
           </a>
 
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="p-2 text-text-secondary hover:text-primary transition-colors"
+            className="p-2 text-muted-foreground hover:text-primary transition-colors"
             aria-label="Toggle menu"
           >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
       </div>
@@ -220,12 +206,9 @@ export function Navigation(): React.ReactNode {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="overflow-hidden bg-card/98 backdrop-blur-xl border-t border-border/50"
+            className="overflow-hidden bg-background border-t border-border"
           >
-            <div className="px-4 py-3 border-b border-border/30">
-              <span className="text-xs font-medium text-text-secondary uppercase tracking-wider">Main</span>
-            </div>
-            <div className="px-4 py-2 space-y-1">
+            <div className="px-4 py-2 space-y-0.5">
               {navSections.main.map((item) => {
                 const Icon = item.icon
                 const isActive = activeSection === item.href.substring(1)
@@ -233,24 +216,21 @@ export function Navigation(): React.ReactNode {
                   <a
                     key={item.href}
                     href={item.href}
-                    className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-colors ${
+                    className={`flex items-center gap-3 px-4 py-3 rounded-md transition-colors ${
                       isActive
-                        ? 'bg-primary/15 text-primary'
-                        : 'text-text-secondary hover:text-primary hover:bg-primary/5'
+                        ? 'bg-secondary text-primary'
+                        : 'text-muted-foreground hover:text-primary hover:bg-secondary/50'
                     }`}
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    <Icon size={20} />
+                    <Icon size={19} />
                     <span className="font-medium">{item.label}</span>
                   </a>
                 )
               })}
             </div>
 
-            <div className="px-4 py-3 border-b border-border/30">
-              <span className="text-xs font-medium text-text-secondary uppercase tracking-wider">More</span>
-            </div>
-            <div className="px-4 py-2 space-y-1">
+            <div className="px-4 py-2 space-y-0.5">
               {navSections.secondary.map((item) => {
                 const Icon = item.icon
                 const isActive = activeSection === item.href.substring(1)
@@ -258,24 +238,21 @@ export function Navigation(): React.ReactNode {
                   <a
                     key={item.href}
                     href={item.href}
-                    className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-colors ${
+                    className={`flex items-center gap-3 px-4 py-3 rounded-md transition-colors ${
                       isActive
-                        ? 'bg-primary/15 text-primary'
-                        : 'text-text-secondary hover:text-primary hover:bg-primary/5'
+                        ? 'bg-secondary text-primary'
+                        : 'text-muted-foreground hover:text-primary hover:bg-secondary/50'
                     }`}
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    <Icon size={20} />
+                    <Icon size={19} />
                     <span className="font-medium">{item.label}</span>
                   </a>
                 )
               })}
             </div>
 
-            <div className="px-4 py-3 border-b border-border/30">
-              <span className="text-xs font-medium text-text-secondary uppercase tracking-wider">Connect</span>
-            </div>
-            <div className="px-4 py-2 space-y-1 mb-2">
+            <div className="px-4 py-2 space-y-0.5 mb-2">
               {navSections.social.map((item) => {
                 const Icon = item.icon
                 const isActive = activeSection === item.href.substring(1)
@@ -283,14 +260,14 @@ export function Navigation(): React.ReactNode {
                   <a
                     key={item.href}
                     href={item.href}
-                    className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-colors ${
+                    className={`flex items-center gap-3 px-4 py-3 rounded-md transition-colors ${
                       isActive
-                        ? 'bg-primary/15 text-primary'
-                        : 'text-text-secondary hover:text-primary hover:bg-primary/5'
+                        ? 'bg-secondary text-primary'
+                        : 'text-muted-foreground hover:text-primary hover:bg-secondary/50'
                     }`}
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    <Icon size={20} />
+                    <Icon size={19} />
                     <span className="font-medium">{item.label}</span>
                   </a>
                 )

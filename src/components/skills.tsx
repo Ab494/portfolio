@@ -3,107 +3,90 @@
 import { motion } from 'framer-motion'
 
 const skillsData = {
-  frontend: [
-    'JavaScript (ES6+)',
-    'TypeScript',
-    'React.js',
-    'Next.js 14',
-    'HTML5 & CSS3',
-    'Tailwind CSS'
-  ],
   backend: [
-    'Node.js',
-    'Express.js',
     'Python',
     'Django / Django REST Framework',
-    'Flask'
+    'Laravel (PHP)',
+    'Flask',
+    'Node.js / Express.js',
+  ],
+  frontend: [
+    'Next.js 14',
+    'React.js',
+    'TypeScript',
+    'JavaScript (ES6+)',
+    'HTML5 & CSS3',
+    'Tailwind CSS',
   ],
   databases: [
-    'MySQL',
     'PostgreSQL',
+    'MySQL',
     'MongoDB',
-    'SQLite'
+    'SQLite',
   ],
-  tools: [
-    'Git & GitHub',
+  devops: [
     'Docker & Docker Compose',
     'GitHub Actions (CI/CD)',
     'Terraform (IaC)',
-    'Linux',
-    'Bash Scripting',
-    'Postman / Thunder Client',
-    'Render, Vercel, Railway, Netlify',
-    'REST API Development',
+    'VPS / cPanel deployment',
     'Nginx',
-    'Winston (Structured Logging)',
-    'VS Code'
-  ]
+    'Linux & Bash scripting',
+    'Winston structured logging',
+    'UptimeRobot monitoring',
+  ],
 }
 
-const specializationData = {
-  primary: {
-    title: 'MERN Stack (Primary)',
-    items: [
-      'Full-stack MERN apps',
-      'Authentication & Authorization (JWT, RBAC)',
-      'REST API development',
-      'MongoDB schema design',
-      'State management'
-    ]
-  },
-  secondary: {
-    title: 'Python Backend Development',
+const specializationData = [
+  {
+    title: 'Python / Django Backend',
     items: [
       'Django REST Framework APIs',
       'Celery & Redis task queues',
-      'WebSocket real-time features (Django Channels)',
-      'Authentication systems',
-      'System tools and utilities'
+      'Django Channels (WebSocket real-time)',
+      'M-Pesa Daraja API integration',
+      'JWT auth & role-based access control',
     ]
   },
-  devops: {
+  {
     title: 'DevOps & Infrastructure',
     items: [
-      'Docker containerisation & Compose',
+      'Docker containerization & Compose',
       'GitHub Actions CI/CD pipelines',
       'Terraform Infrastructure as Code',
-      'Render & cloud deployments',
-      'Structured logging, health checks & uptime monitoring'
+      'VPS and cPanel deployment',
+      'Nginx, Winston logging, UptimeRobot monitoring',
+    ]
+  },
+  {
+    title: 'Full-Stack When Needed',
+    items: [
+      'Laravel CMS development',
+      'Next.js frontends for Django APIs',
+      'M-Pesa Daraja callback URL consolidation',
+      'Africa\'s Talking SMS integration',
+      'Cloudinary, Celery, Redis',
     ]
   }
-}
+]
 
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2,
-      delayChildren: 0.3,
+      staggerChildren: 0.15,
+      delayChildren: 0.2,
     }
   }
 }
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 50, rotateX: -15 },
+const itemVariants = {
+  hidden: { opacity: 0, y: 15 },
   visible: {
     opacity: 1,
     y: 0,
-    rotateX: 0,
     transition: {
-      duration: 0.8,
-      ease: [0.6, -0.05, 0.01, 0.99],
-    }
-  }
-}
-
-const skillItemVariants = {
-  hidden: { opacity: 0, x: -20 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      duration: 0.5,
+      duration: 0.4,
       ease: "easeOut",
     }
   }
@@ -112,30 +95,29 @@ const skillItemVariants = {
 export function Skills() {
   return (
     <section id="skills" className="py-20 px-4">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-5xl mx-auto">
         <motion.h2
-          className="text-3xl md:text-4xl font-bold text-center mb-4 bg-gradient-to-r from-primary to-primary-hover bg-clip-text text-transparent"
-          initial={{ opacity: 0, y: 30, scale: 0.9 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-3xl md:text-4xl font-serif font-semibold text-center mb-3 text-foreground"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
           viewport={{ once: true }}
-          whileHover={{ scale: 1.05 }}
         >
-          Skills & Technologies
+          Skills & tools
         </motion.h2>
 
         <motion.p
-          className="text-lg text-text-secondary text-center mb-16 max-w-2xl mx-auto"
-          initial={{ opacity: 0, y: 20 }}
+          className="text-base text-text-secondary text-center mb-12 max-w-xl mx-auto"
+          initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+          transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
           viewport={{ once: true }}
         >
-          My technical expertise spans full-stack development, from frontend to backend, databases, and essential tools.
+          The technologies I reach for in real projects.
         </motion.p>
 
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -144,55 +126,33 @@ export function Skills() {
           {Object.entries(skillsData).map(([key, skills], index) => (
             <motion.div
               key={key}
-              className="bg-card p-6 rounded-lg border border-border hover:border-primary/50 transition-all duration-300"
-              variants={cardVariants}
-              whileHover={{
-                scale: 1.05,
-                boxShadow: "0 25px 50px -12px rgba(59, 130, 246, 0.25)",
-                transition: { duration: 0.3 }
-              }}
+              variants={itemVariants}
             >
-              <motion.h3
-                className="text-xl font-semibold mb-4 text-primary capitalize"
-                variants={skillItemVariants}
-              >
-                {key === 'tools' ? 'Tools & Technologies' : key}
-              </motion.h3>
-              <motion.ul
-                className="space-y-2"
-                variants={containerVariants}
-              >
+              <h3 className="text-sm font-semibold uppercase tracking-wide text-primary mb-3">
+                {key}
+              </h3>
+              <ul className="space-y-1.5">
                 {skills.map((skill, skillIndex) => (
-                  <motion.li
+                  <li
                     key={skill}
-                    className="text-text-secondary flex items-center gap-2"
-                    variants={skillItemVariants}
-                    whileHover={{ x: 5, color: "#3B82F6" }}
-                    transition={{ duration: 0.2 }}
+                    className="text-text-secondary text-sm"
                   >
-                    <motion.div
-                      className="w-1.5 h-1.5 bg-primary rounded-full"
-                      initial={{ scale: 0 }}
-                      whileInView={{ scale: 1 }}
-                      transition={{ delay: (index * 0.1) + (skillIndex * 0.05), duration: 0.3 }}
-                      viewport={{ once: true }}
-                    />
                     {skill}
-                  </motion.li>
+                  </li>
                 ))}
-              </motion.ul>
+              </ul>
             </motion.div>
           ))}
         </motion.div>
 
         <motion.h3
-          className="text-2xl font-bold text-center mb-8 bg-gradient-to-r from-primary to-primary-hover bg-clip-text text-transparent"
-          initial={{ opacity: 0, y: 20 }}
+          className="text-2xl font-serif font-semibold text-center mb-8 text-foreground"
+          initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
           viewport={{ once: true }}
         >
-          Specialization
+          Where I specialize
         </motion.h3>
 
         <motion.div
@@ -202,52 +162,23 @@ export function Skills() {
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
         >
-          {Object.values(specializationData).map((spec, index) => (
+          {specializationData.map((spec, index) => (
             <motion.div
               key={spec.title}
-              className={`p-6 rounded-lg border ${
-                index === 0
-                  ? 'bg-card border-border hover:border-primary/50'
-                  : 'bg-gradient-to-r from-primary/10 to-primary/5 border-primary/20'
-              }`}
-              variants={cardVariants}
-              whileHover={{
-                scale: 1.02,
-                boxShadow: index === 0
-                  ? "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
-                  : "0 25px 50px -12px rgba(59, 130, 246, 0.15)",
-                transition: { duration: 0.3 }
-              }}
+              className={index === 0 ? "pl-6 border-l-2 border-primary" : "pl-6 border-l border-border"}
+              variants={itemVariants}
             >
-              <motion.h4
-                className="text-xl font-semibold mb-4 text-primary"
-                variants={skillItemVariants}
-              >
+              <h4 className="text-base font-medium mb-3 text-foreground">
                 {spec.title}
-              </motion.h4>
-              <motion.ul
-                className="space-y-2 text-text-secondary"
-                variants={containerVariants}
-              >
-                {spec.items.map((item, itemIndex) => (
-                  <motion.li
-                    key={item}
-                    className="flex items-center gap-2"
-                    variants={skillItemVariants}
-                    whileHover={{ x: 5, color: "#3B82F6" }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <motion.div
-                      className="w-1.5 h-1.5 bg-primary rounded-full"
-                      initial={{ scale: 0 }}
-                      whileInView={{ scale: 1 }}
-                      transition={{ delay: (index * 0.2) + (itemIndex * 0.1), duration: 0.3 }}
-                      viewport={{ once: true }}
-                    />
+              </h4>
+              <ul className="space-y-1.5 text-text-secondary text-sm">
+                {spec.items.map((item) => (
+                  <li key={item} className="flex items-start gap-2">
+                    <div className="w-1 h-1 bg-primary rounded-full mt-2 flex-shrink-0" />
                     {item}
-                  </motion.li>
+                  </li>
                 ))}
-              </motion.ul>
+              </ul>
             </motion.div>
           ))}
         </motion.div>

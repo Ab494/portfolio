@@ -21,110 +21,63 @@ export function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setStatus('loading')
-    
+
     try {
       const response = await fetch(FORMSPREE_ENDPOINT, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          subject: formData.subject,
-          message: formData.message
-        })
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
       })
-      
+
       if (response.ok) {
         setStatus('success')
         setFormData({ name: '', email: '', subject: '', message: '' })
       } else {
         setStatus('error')
       }
-    } catch (error) {
+    } catch {
       setStatus('error')
     }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData(prev => ({
-      ...prev,
-      [e.target.name]: e.target.value
-    }))
+    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.3,
-        delayChildren: 0.2,
-      }
+      transition: { staggerChildren: 0.15, delayChildren: 0.1 }
     }
   }
 
-  const cardVariants = {
-    hidden: { opacity: 0, y: 50, scale: 0.9 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        duration: 0.8,
-        ease: [0.6, -0.05, 0.01, 0.99],
-      }
-    }
-  }
-
-  const contactItemVariants = {
-    hidden: { opacity: 0, x: -30 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut",
-      }
-    }
-  }
-
-  const socialIconVariants = {
-    hidden: { opacity: 0, scale: 0 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: {
-        duration: 0.5,
-        ease: "easeOut",
-      }
-    }
+  const itemVariants = {
+    hidden: { opacity: 0, y: 15 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: 'easeOut' } }
   }
 
   return (
     <section id="contact" className="py-20 px-4">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-5xl mx-auto">
         <motion.h2
-          className="text-3xl md:text-4xl font-bold text-center mb-4 bg-gradient-to-r from-primary to-primary-hover bg-clip-text text-transparent"
-          initial={{ opacity: 0, y: 30, scale: 0.9 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-3xl md:text-4xl font-serif font-semibold text-center mb-3 text-foreground"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
           viewport={{ once: true }}
-          whileHover={{ scale: 1.05 }}
         >
-          Let's Connect
+          Get in touch
         </motion.h2>
 
         <motion.p
-          className="text-lg text-text-secondary text-center mb-16 max-w-2xl mx-auto"
-          initial={{ opacity: 0, y: 20 }}
+          className="text-base text-text-secondary text-center mb-12 max-w-xl mx-auto"
+          initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+          transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
           viewport={{ once: true }}
         >
-          I'm always interested in discussing new opportunities, collaborations, or just talking about technology.
-          Feel free to reach out!
+          Open to work, collaborations, or just a conversation about tech. I usually reply within a day.
         </motion.p>
 
         <motion.div
@@ -132,305 +85,136 @@ export function Contact() {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: "-80px" }}
         >
           {/* Contact Info */}
-          <motion.div
-            className="space-y-8"
-            variants={cardVariants}
-          >
-            <motion.div
-              className="bg-card p-6 rounded-lg border border-border hover:border-primary/50 transition-colors"
-              variants={cardVariants}
-              whileHover={{
-                scale: 1.02,
-                boxShadow: "0 25px 50px -12px rgba(59, 130, 246, 0.25)",
-                transition: { duration: 0.3 }
-              }}
-            >
-              <motion.h3
-                className="text-xl font-semibold mb-6 text-primary"
-                variants={contactItemVariants}
-              >
-                Get In Touch
-              </motion.h3>
-
-              <motion.div
-                className="space-y-4"
-                variants={containerVariants}
-              >
-                <motion.div
-                  className="flex items-start gap-4"
-                  variants={contactItemVariants}
-                  whileHover={{ x: 5 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <motion.div
-                    className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0"
-                    whileHover={{
-                      scale: 1.1,
-                      backgroundColor: "rgba(59, 130, 246, 0.2)"
-                    }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <span className="text-primary text-lg">📧</span>
-                  </motion.div>
+          <motion.div variants={itemVariants} className="space-y-6">
+            <div>
+              <h3 className="text-sm font-semibold uppercase tracking-wide text-primary mb-4">Contact details</h3>
+              <div className="space-y-4">
+                <div className="flex items-start gap-3">
                   <div>
-                    <p className="font-semibold text-lg text-foreground">Email</p>
-                    <p className="text-text-secondary text-base">cheruiyotevans646@gmail.com</p>
+                    <p className="text-sm font-medium text-foreground">Email</p>
+                    <p className="text-text-secondary text-sm">cheruiyotevans646@gmail.com</p>
                   </div>
-                </motion.div>
+                </div>
+                <div>
+                  <p className="text-sm font-medium text-foreground">Phone</p>
+                  <p className="text-text-secondary text-sm">+254 711 546 105</p>
+                </div>
+                <div>
+                  <p className="text-sm font-medium text-foreground">Location</p>
+                  <p className="text-text-secondary text-sm">Nairobi, Kenya — remote work welcome</p>
+                </div>
+              </div>
+            </div>
 
-                <motion.div
-                  className="flex items-start gap-4"
-                  variants={contactItemVariants}
-                  whileHover={{ x: 5 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <motion.div
-                    className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0"
-                    whileHover={{
-                      scale: 1.1,
-                      backgroundColor: "rgba(59, 130, 246, 0.2)"
-                    }}
-                    transition={{ duration: 0.2 }}
+            <div className="pt-6 border-t border-border">
+              <h3 className="text-sm font-semibold uppercase tracking-wide text-primary mb-4">Find me online</h3>
+              <div className="flex gap-3">
+                {[
+                  { href: "https://x.com/EvansCheru48487", label: "X (Twitter)", icon: FaXTwitter },
+                  { href: "https://www.linkedin.com/in/evans-kipngeno-cheruiyot-448458346/", label: "LinkedIn", icon: FaLinkedin },
+                  { href: "https://github.com/Ab494", label: "GitHub", icon: FaGithub }
+                ].map((social) => (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 bg-secondary border border-border rounded-md flex items-center justify-center hover:border-primary hover:text-primary text-muted-foreground transition-colors"
+                    aria-label={social.label}
                   >
-                    <span className="text-primary text-lg"></span>
-                  </motion.div>
-                  <div>
-                    <p className="font-semibold text-lg text-foreground">Phone</p>
-                    <p className="text-text-secondary text-base">+254 711546105</p>
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  className="flex items-start gap-4"
-                  variants={contactItemVariants}
-                  whileHover={{ x: 5 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <motion.div
-                    className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0"
-                    whileHover={{
-                      scale: 1.1,
-                      backgroundColor: "rgba(59, 130, 246, 0.2)"
-                    }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <span className="text-primary text-lg"></span>
-                  </motion.div>
-                  <div>
-                    <p className="font-semibold text-lg text-foreground">Location</p>
-                    <p className="text-text-secondary text-base">Nairobi, Kenya (Remote Work Available)</p>
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  className="mt-6 p-4 bg-emerald-50 border border-emerald-200 rounded-lg"
-                  variants={contactItemVariants}
-                >
-                  <p className="text-emerald-800 font-medium text-center">
-                    Response Time: Within 24 hours
-                  </p>
-                </motion.div>
-
-                <motion.div
-                  className="mt-6"
-                  variants={contactItemVariants}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Button
-                    onClick={() => document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })}
-                    className="w-full bg-emerald-500 hover:bg-emerald-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 text-lg py-4"
-                  >
-                    <motion.span
-                      whileHover={{ scale: 1.05 }}
-                      transition={{ type: "spring", stiffness: 400 }}
-                    >
-                      Send Me a Message
-                    </motion.span>
-                  </Button>
-                </motion.div>
-              </motion.div>
-
-              <motion.div
-                className="mt-8"
-                variants={cardVariants}
-              >
-                <motion.h4
-                  className="text-lg font-semibold mb-4 text-primary"
-                  variants={contactItemVariants}
-                >
-                  Follow Me
-                </motion.h4>
-                <motion.div
-                  className="flex gap-4"
-                  variants={containerVariants}
-                >
-                  {[
-                    { href: "https://x.com/EvansCheru48487", label: "X (Twitter)", icon: FaXTwitter },
-                    { href: "https://www.linkedin.com/in/evans-kipngeno-cheruiyot-448458346/", label: "LinkedIn", icon: FaLinkedin },
-                    { href: "https://github.com/Ab494", label: "GitHub", icon: FaGithub }
-                  ].map((social, index) => (
-                    <motion.a
-                      key={social.label}
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center hover:bg-primary/20 transition-all duration-300"
-                      aria-label={social.label}
-                      variants={socialIconVariants}
-                      whileHover={{
-                        scale: 1.2,
-                        backgroundColor: "rgba(59, 130, 246, 0.3)",
-                        rotate: 5
-                      }}
-                      whileTap={{ scale: 0.9 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <social.icon className="text-primary text-lg" />
-                    </motion.a>
-                  ))}
-                </motion.div>
-              </motion.div>
-            </motion.div>
+                    <social.icon className="text-base" />
+                  </a>
+                ))}
+              </div>
+            </div>
           </motion.div>
 
           {/* Contact Form */}
-          <motion.div
-            id="contact-form"
-            variants={cardVariants}
-          >
-            <motion.div
-              className="bg-card p-6 rounded-lg border border-border hover:border-primary/50 transition-colors"
-              variants={cardVariants}
-              whileHover={{
-                scale: 1.02,
-                boxShadow: "0 25px 50px -12px rgba(59, 130, 246, 0.25)",
-                transition: { duration: 0.3 }
-              }}
-            >
-              <motion.h3
-                className="text-xl font-semibold mb-6 text-primary"
-                variants={contactItemVariants}
+          <motion.div id="contact-form" variants={itemVariants}>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium mb-1.5 text-foreground">
+                  Name
+                </label>
+                <Input
+                  id="name"
+                  name="name"
+                  type="text"
+                  placeholder="Your name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium mb-1.5 text-foreground">
+                  Email
+                </label>
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="you@example.com"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+
+              <div>
+                <label htmlFor="subject" className="block text-sm font-medium mb-1.5 text-foreground">
+                  Subject
+                </label>
+                <Input
+                  id="subject"
+                  name="subject"
+                  type="text"
+                  placeholder="What's this about?"
+                  value={formData.subject}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+
+              <div>
+                <label htmlFor="message" className="block text-sm font-medium mb-1.5 text-foreground">
+                  Message
+                </label>
+                <Textarea
+                  id="message"
+                  name="message"
+                  placeholder="Tell me about your project or just say hello."
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
+                  rows={5}
+                />
+              </div>
+
+              {status === 'success' && (
+                <div className="p-3 bg-secondary border border-border rounded-md text-sm text-foreground text-center">
+                  Message sent. I'll get back to you soon.
+                </div>
+              )}
+
+              {status === 'error' && (
+                <div className="p-3 border border-destructive/30 rounded-md text-sm text-destructive text-center">
+                  Something went wrong. Please try again or email me directly.
+                </div>
+              )}
+
+              <Button
+                type="submit"
+                disabled={status === 'loading'}
+                className="w-full"
               >
-                Send a Message
-              </motion.h3>
-
-              <motion.form
-                onSubmit={handleSubmit}
-                className="space-y-4"
-                variants={containerVariants}
-              >
-                <motion.div variants={contactItemVariants}>
-                  <label htmlFor="name" className="block text-sm font-medium mb-2 text-foreground">
-                    Your Name
-                  </label>
-                  <Input
-                    id="name"
-                    name="name"
-                    type="text"
-                    placeholder="Enter your name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    className="border-border focus:border-primary"
-                  />
-                </motion.div>
-
-                <motion.div variants={contactItemVariants}>
-                  <label htmlFor="email" className="block text-sm font-medium mb-2 text-foreground">
-                    Email Address
-                  </label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    placeholder="Enter your email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className="border-border focus:border-primary"
-                  />
-                </motion.div>
-
-                <motion.div variants={contactItemVariants}>
-                  <label htmlFor="subject" className="block text-sm font-medium mb-2 text-foreground">
-                    Subject
-                  </label>
-                  <Input
-                    id="subject"
-                    name="subject"
-                    type="text"
-                    placeholder="What's this about?"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    required
-                    className="border-border focus:border-primary"
-                  />
-                </motion.div>
-
-                <motion.div variants={contactItemVariants}>
-                  <label htmlFor="message" className="block text-sm font-medium mb-2 text-foreground">
-                    Message
-                  </label>
-                  <Textarea
-                    id="message"
-                    name="message"
-                    placeholder="Tell me about your project or just say hello!"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    rows={5}
-                    className="border-border focus:border-primary"
-                  />
-                </motion.div>
-
-                {status === 'success' && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="p-4 bg-emerald-50 border border-emerald-200 rounded-lg"
-                  >
-                    <p className="text-emerald-800 font-medium text-center">
-                      ✓ Message sent successfully! I'll get back to you soon.
-                    </p>
-                  </motion.div>
-                )}
-
-                {status === 'error' && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="p-4 bg-red-50 border border-red-200 rounded-lg"
-                  >
-                    <p className="text-red-800 font-medium text-center">
-                      ✗ Something went wrong. Please try again or email directly.
-                    </p>
-                  </motion.div>
-                )}
-
-                <motion.div
-                  variants={contactItemVariants}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <Button
-                    type="submit"
-                    disabled={status === 'loading'}
-                    className="w-full bg-primary hover:bg-primary-hover text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50"
-                  >
-                    <motion.span
-                      whileHover={{ scale: 1.05 }}
-                      transition={{ type: "spring", stiffness: 400 }}
-                    >
-                      {status === 'loading' ? 'Sending...' : 'Send Message'}
-                    </motion.span>
-                  </Button>
-                </motion.div>
-              </motion.form>
-            </motion.div>
+                {status === 'loading' ? 'Sending...' : 'Send message'}
+              </Button>
+            </form>
           </motion.div>
         </motion.div>
       </div>

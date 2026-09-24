@@ -2,13 +2,12 @@
 
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Star, GitFork, Calendar } from 'lucide-react'
+import { Star, GitFork } from 'lucide-react'
 
 interface GitHubStats {
   public_repos: number
   followers: number
   following: number
-  contributions: number
 }
 
 interface GitHubRepo {
@@ -28,8 +27,7 @@ export function GitHubIntegration() {
   const [stats, setStats] = useState<GitHubStats>({
     public_repos: 0,
     followers: 0,
-    following: 0,
-    contributions: 0
+    following: 0
   })
   const [repos, setRepos] = useState<GitHubRepo[]>([])
   const [loading, setLoading] = useState(true)
@@ -38,42 +36,27 @@ export function GitHubIntegration() {
   useEffect(() => {
     const fetchGitHubData = async () => {
       try {
-        // Fetch user data
         const userResponse = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}`)
-        if (!userResponse.ok) {
-          throw new Error('Failed to fetch GitHub user data')
-        }
+        if (!userResponse.ok) throw new Error('Failed to fetch GitHub user data')
         const userData = await userResponse.json()
-
-        // Fetch user contributions (requires different endpoint)
-        const contribResponse = await fetch(`https://github-contributions-api.jogruber.de/v4/${GITHUB_USERNAME}`)
-        let contributions = 0
-        if (contribResponse.ok) {
-          const contribData = await contribResponse.json()
-          contributions = contribData.contributions || 0
-        }
 
         setStats({
           public_repos: userData.public_repos || 0,
           followers: userData.followers || 0,
-          following: userData.following || 0,
-          contributions: contributions
+          following: userData.following || 0
         })
 
-        // Fetch repositories (sorted by stars)
         const reposResponse = await fetch(
-          `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=3`
+          `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=6`
         )
-        if (!reposResponse.ok) {
-          throw new Error('Failed to fetch repositories')
-        }
+        if (!reposResponse.ok) throw new Error('Failed to fetch repositories')
         const reposData = await reposResponse.json()
 
         setRepos(reposData)
         setLoading(false)
       } catch (err) {
         console.error('Failed to fetch GitHub data:', err)
-        setError('Failed to load GitHub data')
+        setError('Could not load GitHub data right now')
         setLoading(false)
       }
     }
@@ -82,114 +65,89 @@ export function GitHubIntegration() {
   }, [])
 
   const statItems = [
-    { label: 'Repos', value: stats.public_repos },
+    { label: 'Repositories', value: stats.public_repos },
     { label: 'Followers', value: stats.followers },
     { label: 'Following', value: stats.following }
   ]
 
   return (
-    <section id="github" className="py-20 px-4">
-      <div className="max-w-6xl mx-auto">
+    <section id="github" className="py-20 px-4 bg-secondary/50">
+      <div className="max-w-5xl mx-auto">
         <motion.h2
-          className="text-3xl md:text-4xl font-bold text-center mb-4 bg-gradient-to-r from-primary to-primary-hover bg-clip-text text-transparent"
-          initial={{ opacity: 0, y: 30 }}
+          className="text-3xl md:text-4xl font-serif font-semibold text-center mb-3 text-foreground"
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
           viewport={{ once: true }}
-          whileHover={{ scale: 1.05 }}
         >
-          GitHub Activity
+          GitHub
         </motion.h2>
 
         <motion.p
-          className="text-lg text-text-secondary text-center mb-12 max-w-2xl mx-auto"
-          initial={{ opacity: 0, y: 20 }}
+          className="text-base text-text-secondary text-center mb-10 max-w-xl mx-auto"
+          initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+          transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
           viewport={{ once: true }}
         >
-          Live GitHub statistics and recent repository activity from @{GITHUB_USERNAME}
+          Recent activity from @{GITHUB_USERNAME}.
         </motion.p>
 
         {error && (
-          <div className="text-center text-red-400 mb-8">
-            {error}. Showing cached data.
-          </div>
+          <p className="text-center text-muted-foreground text-sm mb-6">{error}</p>
         )}
 
-        {/* Stats Grid */}
+        {/* Stats */}
         <motion.div
-          className="grid grid-cols-3 gap-2"
-          initial={{ opacity: 0, y: 30 }}
+          className="grid grid-cols-3 gap-4 mb-10"
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
           viewport={{ once: true }}
         >
-          {statItems.map((stat, index) => (
-            <motion.div
-              key={stat.label}
-              className="bg-card p-2 rounded-lg border border-border hover:border-primary/50 transition-all duration-300 text-center"
-              whileHover={{
-                scale: 1.05,
-                y: -5,
-                boxShadow: "0 10px 25px rgba(59, 130, 246, 0.15)"
-              }}
-              transition={{ duration: 0.3 }}
-            >
-              <motion.div
-                className="text-lg font-bold text-primary"
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
-                transition={{ delay: index * 0.1, type: "spring", stiffness: 200 }}
-                viewport={{ once: true }}
-              >
-                {loading ? '...' : stat.value.toLocaleString()}
-              </motion.div>
-              <div className="text-xs text-text-secondary">{stat.label}</div>
-            </motion.div>
+          {statItems.map((stat) => (
+            <div key={stat.label} className="text-center">
+              <div className="text-2xl font-serif font-semibold text-foreground">
+                {loading ? '—' : stat.value.toLocaleString()}
+              </div>
+              <div className="text-xs text-muted-foreground mt-1">{stat.label}</div>
+            </div>
           ))}
         </motion.div>
 
         {/* Recent Repositories */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-3 gap-4"
-          initial={{ opacity: 0, y: 30 }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
           viewport={{ once: true }}
         >
           {loading ? (
-            // Loading skeletons
-            [1, 2, 3].map((i) => (
-              <div key={i} className="bg-card p-4 rounded-lg border border-border animate-pulse">
-                <div className="h-5 bg-primary/20 rounded w-3/4 mb-2"></div>
-                <div className="h-3 bg-primary/10 rounded w-full mb-1"></div>
-                <div className="h-3 bg-primary/10 rounded w-1/2"></div>
+            [1, 2, 3, 4, 5, 6].map((i) => (
+              <div key={i} className="bg-card border border-border rounded-md p-4 animate-pulse">
+                <div className="h-4 bg-secondary rounded w-3/4 mb-2"></div>
+                <div className="h-3 bg-secondary rounded w-full mb-1"></div>
+                <div className="h-3 bg-secondary rounded w-1/2"></div>
               </div>
             ))
           ) : (
             repos.map((repo) => (
-              <motion.div
+              <div
                 key={repo.id}
-                className="bg-card p-4 rounded-lg border border-border hover:border-primary/50 transition-all duration-300 group"
-                whileHover={{
-                  scale: 1.02,
-                  y: -5,
-                  boxShadow: "0 15px 35px rgba(59, 130, 246, 0.1)"
-                }}
-                transition={{ duration: 0.3 }}
+                className="bg-card border border-border rounded-md p-4 hover:border-primary/40 transition-colors"
               >
                 <div className="flex items-start justify-between mb-2">
-                  <h3 className="text-base font-semibold text-primary group-hover:text-primary-hover transition-colors">
+                  <h3 className="text-sm font-medium text-primary truncate">
                     {repo.name}
                   </h3>
-                  <div className="flex items-center gap-1 text-xs text-text-secondary">
-                    <Star size={12} className="text-yellow-500" />
+                  <div className="flex items-center gap-1 text-xs text-muted-foreground flex-shrink-0">
+                    <Star size={12} />
                     <span>{repo.stargazers_count}</span>
                   </div>
                 </div>
 
-                <p className="text-text-secondary text-xs mb-3 line-clamp-2">
+                <p className="text-xs text-text-secondary mb-3 line-clamp-2 leading-relaxed">
                   {repo.description || 'No description available'}
                 </p>
 
@@ -197,63 +155,39 @@ export function GitHubIntegration() {
                   <div className="flex items-center gap-1.5">
                     <div
                       className="w-2.5 h-2.5 rounded-full"
-                      style={{
-                        backgroundColor: getLanguageColor(repo.language)
-                      }}
+                      style={{ backgroundColor: getLanguageColor(repo.language) }}
                     />
-                    <span className="text-xs text-text-secondary">{repo.language || 'Unknown'}</span>
+                    <span className="text-xs text-muted-foreground">{repo.language || 'Unknown'}</span>
                   </div>
-                  <div className="flex items-center gap-1 text-xs text-text-secondary">
-                    <GitFork size={10} />
+                  <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                    <GitFork size={11} />
                     <span>{repo.forks_count}</span>
                   </div>
                 </div>
 
-                <motion.a
+                <a
                   href={repo.html_url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 mt-3 text-primary hover:text-primary-hover transition-colors text-xs font-medium"
-                  whileHover={{ x: 2 }}
-                  transition={{ type: "spring", stiffness: 400 }}
+                  className="inline-block mt-3 text-xs text-primary hover:text-primary-hover transition-colors font-medium"
                 >
-                  View
-                  <motion.svg
-                    width="12"
-                    height="12"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    initial={{ x: 0 }}
-                    whileHover={{ x: 2 }}
-                    transition={{ type: "spring", stiffness: 400 }}
-                  >
-                    <path d="M7 17L17 7M17 7H7M17 7V17"/>
-                  </motion.svg>
-                </motion.a>
-              </motion.div>
+                  View repo →
+                </a>
+              </div>
             ))
           )}
         </motion.div>
 
-        {/* View all repos link */}
-        <motion.div
-          className="text-center mt-6"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.8 }}
-          viewport={{ once: true }}
-        >
+        <div className="text-center mt-8">
           <a
             href={`https://github.com/${GITHUB_USERNAME}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary-hover transition-colors"
+            className="inline-flex items-center px-5 py-2.5 border border-border text-foreground rounded-md hover:border-primary hover:text-primary transition-colors text-sm font-medium"
           >
-            View All Repositories on GitHub
+            See all repositories on GitHub →
           </a>
-        </motion.div>
+        </div>
       </div>
     </section>
   )
@@ -266,9 +200,9 @@ function getLanguageColor(language: string | null): string {
     Python: '#3572A5',
     HTML: '#e34c26',
     CSS: '#563d7c',
+    PHP: '#777BB4',
     'C++': '#f34b7d',
     Java: '#ed8e00',
-    PHP: '#777BB4',
     Ruby: '#701516',
     Go: '#00ADD8',
     Rust: '#dea584',
@@ -277,5 +211,5 @@ function getLanguageColor(language: string | null): string {
     Dart: '#00B4AB',
     Kotlin: '#A97BFF'
   }
-  return colors[language || ''] || '#586069'
+  return colors[language || ''] || '#6B645C'
 }

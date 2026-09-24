@@ -17,49 +17,49 @@ module.exports = {
     },
     extend: {
       colors: {
-        border: "#1F2937",
-        input: "#1F2937",
-        ring: "#3B82F6",
-        background: "#0D1117",
-        foreground: "#F3F4F6",
+        border: "#E3DCD2",
+        input: "#E3DCD2",
+        ring: "#B5502E",
+        background: "#FAF7F2",
+        foreground: "#1F1B16",
         primary: {
-          DEFAULT: "#3B82F6",
-          foreground: "#F3F4F6",
-          hover: "#2563EB",
+          DEFAULT: "#B5502E",
+          foreground: "#FAF7F2",
+          hover: "#9D4426",
         },
         secondary: {
-          DEFAULT: "#161B22",
-          foreground: "#F3F4F6",
+          DEFAULT: "#F0EBE3",
+          foreground: "#1F1B16",
         },
         destructive: {
-          DEFAULT: "#dc2626",
-          foreground: "#F3F4F6",
+          DEFAULT: "#B23B3B",
+          foreground: "#FAF7F2",
         },
         muted: {
-          DEFAULT: "#161B22",
-          foreground: "#9CA3AF",
+          DEFAULT: "#F0EBE3",
+          foreground: "#6B645C",
         },
         accent: {
-          DEFAULT: "#1F2937",
-          foreground: "#F3F4F6",
+          DEFAULT: "#E3DCD2",
+          foreground: "#1F1B16",
         },
         popover: {
-          DEFAULT: "#161B22",
-          foreground: "#F3F4F6",
+          DEFAULT: "#FAF7F2",
+          foreground: "#1F1B16",
         },
         card: {
-          DEFAULT: "#161B22",
-          foreground: "#F3F4F6",
+          DEFAULT: "#F5F1EA",
+          foreground: "#1F1B16",
         },
         text: {
-          primary: "#F3F4F6",
-          secondary: "#9CA3AF",
+          primary: "#1F1B16",
+          secondary: "#6B645C",
         },
       },
       borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        lg: "0.375rem",
+        md: "0.25rem",
+        sm: "0.125rem",
       },
       keyframes: {
         "accordion-down": {
@@ -74,6 +74,10 @@ module.exports = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+      },
+      fontFamily: {
+        serif: ['var(--font-fraunces)', 'Georgia', 'serif'],
+        sans: ['var(--font-inter)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
       },
     },
   },

@@ -1,129 +1,93 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Zap, MessageCircle, Code } from 'lucide-react'
-
 
 const reasons = [
   {
-    title: 'Full-Stack Engineering',
+    title: 'I fix things that are broken in production',
     description:
-      'Building robust applications from frontend interfaces to backend services, databases, and APIs using modern technologies and best practices.',
-    icon: Code,
+      'Reversal bugs in a Django POS system, SMS delivery failures via Africa\'s Talking, M-Pesa callback URLs that weren\'t firing — I\'ve tracked down and fixed these in live systems.',
   },
   {
-    title: 'DevOps & Automation',
+    title: 'I handle deployment, not just the code',
     description:
-      'Automating deployments, infrastructure, and development workflows using Docker, CI/CD pipelines, Terraform, and cloud-native practices.',
-    icon: Zap,
+      'Dockerizing apps, setting up GitHub Actions CI/CD, deploying to VPS and cPanel, configuring Nginx. I don\'t hand off a repo and hope it runs.',
   },
   {
-    title: 'Scalable Architecture',
+    title: 'I work across the stack when needed',
     description:
-      'Designing secure, maintainable, and production-ready systems that remain reliable as products, teams, and user bases grow.',
-    icon: MessageCircle,
+      'A Laravel CMS for a SACCO client, a Next.js frontend for a Django API, consolidating M-Pesa Daraja callback URLs across client integrations. Real projects, real deadlines.',
   },
 ]
-
-
 
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2,
-      delayChildren: 0.3,
+      staggerChildren: 0.15,
+      delayChildren: 0.2,
     }
   }
 }
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 50, scale: 0.9 },
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
-    scale: 1,
     transition: {
-      duration: 0.8,
-      ease: [0.6, -0.05, 0.01, 0.99],
+      duration: 0.5,
+      ease: 'easeOut',
     }
   }
 }
 
 export function WhyWorkWithMe() {
   return (
-    <section id="why-work-with-me" className="py-20 px-4 bg-card/30">
-      <div className="max-w-6xl mx-auto">
-        
-    <motion.h2
-      className="text-3xl md:text-4xl font-bold text-center mb-4 bg-gradient-to-r from-primary to-primary-hover bg-clip-text text-transparent"
-    >
-     What I Bring To Teams
-    </motion.h2>
+    <section id="why-work-with-me" className="py-20 px-4 bg-secondary/50">
+      <div className="max-w-4xl mx-auto">
+        <motion.h2
+          className="text-3xl md:text-4xl font-serif font-semibold text-center mb-3 text-foreground"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          viewport={{ once: true }}
+        >
+          What I bring to a team
+        </motion.h2>
 
-    <motion.p
-      className="text-lg text-text-secondary text-center mb-16 max-w-3xl mx-auto"
-     >
-      Combining software engineering expertise with DevOps practices to build,
-      deploy, and maintain reliable systems that scale.
-    </motion.p>
+        <motion.p
+          className="text-base text-text-secondary text-center mb-12 max-w-xl mx-auto"
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+          viewport={{ once: true }}
+        >
+          Not a list of buzzwords — here's what I actually do when I join a project.
+        </motion.p>
 
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          className="space-y-8"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: "-80px" }}
         >
-          {reasons.map((reason, index) => {
-            const IconComponent = reason.icon
-            return (
-              <motion.div
-                key={reason.title}
-                className="bg-card p-8 rounded-lg border border-border hover:border-primary/50 transition-all duration-300 group text-center"
-                variants={cardVariants}
-                whileHover={{
-                  scale: 1.05,
-                  y: -10,
-                  boxShadow: "0 25px 50px -12px rgba(59, 130, 246, 0.25)",
-                  transition: { duration: 0.3 }
-                }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <motion.div
-                  className="w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center mb-6 mx-auto group-hover:bg-primary/20 transition-colors"
-                  whileHover={{
-                    scale: 1.1,
-                    rotate: 5
-                  }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <IconComponent className="w-8 h-8 text-primary" />
-                </motion.div>
-
-                <motion.h3
-                  className="text-xl font-semibold mb-4 text-primary group-hover:text-primary-hover transition-colors"
-                  initial={{ opacity: 0, y: -20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                >
-                  {reason.title}
-                </motion.h3>
-
-                <motion.p
-                  className="text-text-secondary leading-relaxed"
-                  initial={{ opacity: 0, y: -20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 + 0.1 }}
-                  viewport={{ once: true }}
-                >
-                  {reason.description}
-                </motion.p>
-              </motion.div>
-            )
-          })}
+          {reasons.map((reason) => (
+            <motion.div
+              key={reason.title}
+              variants={itemVariants}
+              className="border-l-2 border-primary/30 pl-6"
+            >
+              <h3 className="text-lg font-medium mb-2 text-foreground">
+                {reason.title}
+              </h3>
+              <p className="text-text-secondary leading-relaxed text-sm">
+                {reason.description}
+              </p>
+            </motion.div>
+          ))}
         </motion.div>
       </div>
     </section>
