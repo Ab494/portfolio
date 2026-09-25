@@ -102,7 +102,7 @@ export function About() {
               {/* About copy */}
               <div className="space-y-6">
                 <p className="text-xl leading-relaxed text-foreground md:text-2xl">
-                  I'm a backend and full-stack engineer based in Nairobi,
+                  I'm a backend and full-stack engineer based in Eldoret,
                   focused on building reliable applications, APIs, and the
                   infrastructure behind them.
                 </p>
@@ -131,7 +131,7 @@ export function About() {
                     </p>
 
                     <p className="mt-2 font-medium text-foreground">
-                      Nairobi, Kenya
+                      Eldoret, Kenya
                     </p>
                   </div>
 
