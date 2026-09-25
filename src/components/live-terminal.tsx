@@ -120,7 +120,7 @@ export function LiveTerminal() {
             <div className="w-3 h-3 bg-[#B23B3B] rounded-full"></div>
             <div className="w-3 h-3 bg-[#C9A227] rounded-full"></div>
             <div className="w-3 h-3 bg-[#4A8B5C] rounded-full"></div>
-            <span className="text-white/40 ml-3 text-xs">bash — evans@workstation</span>
+            <span className="text-white/40 ml-3 text-xs">bash: evans@workstation</span>
           </div>
 
           {/* Terminal Content */}

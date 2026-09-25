@@ -108,7 +108,7 @@ export function GitHubIntegration() {
           {statItems.map((stat) => (
             <div key={stat.label} className="text-center">
               <div className="text-2xl font-serif font-semibold text-foreground">
-                {loading ? '—' : stat.value.toLocaleString()}
+                {loading ? '...' : stat.value.toLocaleString()}
               </div>
               <div className="text-xs text-muted-foreground mt-1">{stat.label}</div>
             </div>

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 
 const educationData = [
   {
-    date: '2024 — Completed',
+    date: '2024, Completed',
     title: 'Diploma in Information Communication Technology',
     institution: 'Eldoret National Polytechnic',
     description: 'Software development, database management, network administration, and systems analysis.',
@@ -16,7 +16,7 @@ const educationData = [
     ]
   },
   {
-    date: '2025 (June–November)',
+    date: '2025 (June to November)',
     title: 'Software Engineering Program',
     institution: 'PLP Academy',
     description: 'Project-based bootcamp covering full-stack development and modern engineering practices.',

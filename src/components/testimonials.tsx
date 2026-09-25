@@ -64,7 +64,7 @@ export function Testimonials() {
               </blockquote>
 
               <cite className="text-primary font-medium text-sm not-italic">
-                &mdash; {testimonial.author}
+                {testimonial.author}
               </cite>
             </motion.div>
           ))}

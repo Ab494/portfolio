@@ -144,7 +144,7 @@ export function Projects() {
           transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
           viewport={{ once: true }}
         >
-          A selection of things I&apos;ve built — some are live, some are personal projects I use to learn.
+          A selection of things I&apos;ve built. Some are live, some are personal projects I use to learn.
         </motion.p>
 
         <motion.div
