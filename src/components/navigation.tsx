@@ -2,7 +2,8 @@
 
 import { motion, AnimatePresence } from 'framer-motion'
 import React, { useState, useEffect, useRef } from 'react'
-import { Menu, X, Home, User, Code2, FolderKanban, GraduationCap, Heart, Github, Mail, Download, Video as LucideIcon } from 'lucide-react'
+import { Menu, X, Home, User, Code2, FolderKanban, GraduationCap, Heart, Github, Mail, Download, Moon, Sun, Video as LucideIcon } from 'lucide-react'
+import { useTheme } from './theme-provider'
 
 interface NavItem {
   href: string
@@ -32,6 +33,7 @@ export function Navigation(): React.ReactNode {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [hoveredItem, setHoveredItem] = useState<string | null>(null)
   const sidebarRef = useRef<HTMLDivElement>(null)
+  const { theme, toggleTheme } = useTheme()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -57,7 +59,7 @@ export function Navigation(): React.ReactNode {
 
   const NavItem = ({ item, isActive }: { item: NavItem; isActive: boolean }) => {
     const Icon = item.icon
-    
+
     return (
       <a
         href={item.href}
@@ -72,7 +74,7 @@ export function Navigation(): React.ReactNode {
       >
         <Icon size={19} />
         {hoveredItem === item.href && !isActive && (
-          <div 
+          <div
             className="absolute left-full ml-3 px-3 py-1.5 bg-background border border-border rounded-md whitespace-nowrap z-50 shadow-sm"
             style={{ pointerEvents: 'none' }}
           >
@@ -83,6 +85,19 @@ export function Navigation(): React.ReactNode {
     )
   }
 
+  const ThemeToggle = ({ size = 18 }: { size?: number }) => (
+    <button
+      onClick={toggleTheme}
+      className="flex items-center justify-center w-11 h-11 rounded-md bg-secondary text-muted-foreground hover:text-primary hover:border-primary border border-border transition-colors duration-200"
+      onMouseEnter={() => setHoveredItem('theme')}
+      onMouseLeave={() => setHoveredItem(null)}
+      title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+      aria-label="Toggle theme"
+    >
+      {theme === 'dark' ? <Sun size={size} /> : <Moon size={size} />}
+    </button>
+  )
+
   const Sidebar = () => (
     <div
       ref={sidebarRef}
@@ -92,9 +107,9 @@ export function Navigation(): React.ReactNode {
       <div className="mb-6">
         <a href="#hero" className="block">
           <div className="w-11 h-11 rounded-full overflow-hidden border border-border">
-            <img 
-              src="/vanso.jpeg" 
-              alt="Evans Kipngeno" 
+            <img
+              src="/vanso.jpeg"
+              alt="Evans Kipngeno"
               className="w-full h-full object-cover"
             />
           </div>
@@ -103,10 +118,10 @@ export function Navigation(): React.ReactNode {
 
       <div className="flex flex-col gap-1.5">
         {navSections.main.map((item) => (
-          <NavItem 
-            key={item.href} 
-            item={item} 
-            isActive={activeSection === item.href.substring(1)} 
+          <NavItem
+            key={item.href}
+            item={item}
+            isActive={activeSection === item.href.substring(1)}
           />
         ))}
       </div>
@@ -115,10 +130,10 @@ export function Navigation(): React.ReactNode {
 
       <div className="flex flex-col gap-1.5">
         {navSections.secondary.map((item) => (
-          <NavItem 
-            key={item.href} 
-            item={item} 
-            isActive={activeSection === item.href.substring(1)} 
+          <NavItem
+            key={item.href}
+            item={item}
+            isActive={activeSection === item.href.substring(1)}
           />
         ))}
       </div>
@@ -127,18 +142,31 @@ export function Navigation(): React.ReactNode {
 
       <div className="flex flex-col gap-1.5">
         {navSections.social.map((item) => (
-          <NavItem 
-            key={item.href} 
-            item={item} 
-            isActive={activeSection === item.href.substring(1)} 
+          <NavItem
+            key={item.href}
+            item={item}
+            isActive={activeSection === item.href.substring(1)}
           />
         ))}
       </div>
 
-      <div className="mt-auto mb-2">
+      <div className="mt-auto mb-2 flex flex-col gap-1.5 items-center">
+        <div className="relative">
+          <ThemeToggle size={17} />
+          {hoveredItem === 'theme' && (
+            <div
+              className="absolute left-full ml-3 px-3 py-1.5 bg-background border border-border rounded-md whitespace-nowrap z-50 shadow-sm"
+              style={{ pointerEvents: 'none' }}
+            >
+              <span className="text-sm font-medium text-foreground">
+                {theme === 'dark' ? 'Light mode' : 'Dark mode'}
+              </span>
+            </div>
+          )}
+        </div>
+
         <a
-          href="/cv.pdf"
-          download
+          href="#contact"
           className="flex items-center justify-center w-11 h-11 rounded-md bg-secondary text-muted-foreground hover:text-primary hover:border-primary border border-border transition-colors duration-200"
           onMouseEnter={() => setHoveredItem('download')}
           onMouseLeave={() => setHoveredItem(null)}
@@ -147,7 +175,7 @@ export function Navigation(): React.ReactNode {
           <Download size={17} />
         </a>
         {hoveredItem === 'download' && (
-          <div 
+          <div
             className="absolute left-full ml-3 px-3 py-1.5 bg-background border border-border rounded-md whitespace-nowrap z-50 shadow-sm"
             style={{ pointerEvents: 'none' }}
           >
@@ -168,9 +196,9 @@ export function Navigation(): React.ReactNode {
       <div className="flex items-center justify-between px-4 py-3">
         <a href="#hero" className="flex items-center gap-2">
           <div className="w-8 h-8 rounded-full overflow-hidden border border-border">
-            <img 
-              src="/vanso.jpeg" 
-              alt="Evans Kipngeno" 
+            <img
+              src="/vanso.jpeg"
+              alt="Evans Kipngeno"
               className="w-full h-full object-cover"
             />
           </div>
@@ -180,9 +208,16 @@ export function Navigation(): React.ReactNode {
         </a>
 
         <div className="flex items-center gap-2">
+          <button
+            onClick={toggleTheme}
+            className="p-2 text-muted-foreground hover:text-primary transition-colors"
+            aria-label="Toggle theme"
+          >
+            {theme === 'dark' ? <Sun size={19} /> : <Moon size={19} />}
+          </button>
+
           <a
-            href="/cv.pdf"
-            download
+            href="#contact"
             className="p-2 text-muted-foreground hover:text-primary transition-colors"
             title="Download CV"
           >

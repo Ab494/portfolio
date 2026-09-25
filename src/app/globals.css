@@ -23,7 +23,29 @@
     --border: 34 22% 86%;
     --input: 34 22% 86%;
     --ring: 17 58% 43%;
-    --radius: 0.375rem;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 20 15% 8%;
+    --foreground: 36 26% 92%;
+    --card: 20 14% 11%;
+    --card-foreground: 36 26% 92%;
+    --popover: 20 14% 11%;
+    --popover-foreground: 36 26% 92%;
+    --primary: 17 65% 52%;
+    --primary-foreground: 20 15% 8%;
+    --secondary: 20 12% 16%;
+    --secondary-foreground: 36 26% 92%;
+    --muted: 20 12% 16%;
+    --muted-foreground: 33 10% 55%;
+    --accent: 20 12% 18%;
+    --accent-foreground: 36 26% 92%;
+    --destructive: 0 50% 42%;
+    --destructive-foreground: 250 27% 97%;
+    --border: 20 12% 20%;
+    --input: 20 12% 20%;
+    --ring: 17 65% 52%;
   }
 }
 
@@ -36,7 +58,7 @@
   }
   body {
     @apply bg-background text-foreground;
-    background-color: #FAF7F2;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 }
 
@@ -46,4 +68,22 @@
     font-weight: 600;
     letter-spacing: -0.02em;
   }
+}
+
+@keyframes blob {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -50px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.9); }
+}
+
+.animate-blob {
+  animation: blob 8s infinite ease-in-out;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
 }

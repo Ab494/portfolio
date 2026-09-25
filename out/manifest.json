@@ -1,11 +1,11 @@
 {
   "name": "Evans Kipngeno Cheruiyot - Full-Stack Developer",
   "short_name": "Evans.dev",
-  "description": "Full-Stack Developer specializing in MERN Stack and Python backend development",
+  "description": "Backend developer working with Django, Python, Laravel, and Next.js. DevOps with Docker, CI/CD, and VPS deployment.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0D1117",
-  "theme_color": "#3B82F6",
+  "background_color": "#FAF7F2",
+  "theme_color": "#B5502E",
   "orientation": "portrait-primary",
   "scope": "/",
   "icons": [

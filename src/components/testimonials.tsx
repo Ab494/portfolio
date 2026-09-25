@@ -10,27 +10,13 @@ const testimonials = [
   }
 ]
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-      delayChildren: 0.2,
-    }
-  }
-}
-
 const cardVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: {
-      duration: 0.5,
-      ease: 'easeOut',
-    }
-  }
+    transition: { duration: 0.5, ease: 'easeOut' },
+  },
 }
 
 export function Testimonials() {
@@ -54,12 +40,11 @@ export function Testimonials() {
           transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
           viewport={{ once: true }}
         >
-          More testimonials coming soon.
+          Feedback from people I&apos;ve worked with.
         </motion.p>
 
         <motion.div
           className="flex justify-center"
-          variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
@@ -75,11 +60,11 @@ export function Testimonials() {
               </div>
 
               <blockquote className="text-lg text-text-secondary italic mb-5 leading-relaxed">
-                "{testimonial.quote}"
+                &ldquo;{testimonial.quote}&rdquo;
               </blockquote>
 
               <cite className="text-primary font-medium text-sm not-italic">
-                — {testimonial.author}
+                &mdash; {testimonial.author}
               </cite>
             </motion.div>
           ))}
