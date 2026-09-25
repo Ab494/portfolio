@@ -117,7 +117,7 @@ export function About() {
 
                 <p className="text-base leading-7 text-text-secondary md:text-lg">
                   I enjoy working on the parts of software that need to be
-                  dependable — from payment integrations and database design
+                  dependable from payment integrations and database design
                   to deployment, monitoring, and solving production issues.
                 </p>
               </div>
